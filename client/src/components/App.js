@@ -1,26 +1,32 @@
-import { useEffect } from "react"
+import styled from "styled-components"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// import Navbar from "./Navbar"
+import Home from "./Home"
+import GlobalStyles from "../GlobalStyles";
+import Navbar from "./Navbar";
+import UserProfile from "./UserProfile"
 const App = () => {
 
-  useEffect(() => {
-    const fetchData = async () => {
 
-      try {
-        const data = await fetch("/api/get-tools")
-        const parsedData = await data.json()
-        console.log("  ~ parsedData", parsedData)
+  return (
+    <Wrapper>
+        <Router>
+          <GlobalStyles/>
+          <Navbar/>
 
-      } 
-      catch (error) {
-        console.log("  ~ error", error)
-      }
-    }
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profil" element={<UserProfile/>} />
 
-    fetchData()
 
-  }, [])
+            </Routes>
 
-  return <div><h1>hello</h1></div>
+        </Router>
+    </Wrapper>
+  )
 }
 
-export default App;
+const Wrapper = styled.div``
+
+export default App

@@ -31,11 +31,11 @@ const getTools = async (req, res) => {
   
       const db = await callDb()
   
-      const result = await db.collection("Tools2").find().toArray();
-      console.log("  ~ result", result)
+      const result = await db.collection("Tools3").find().toArray();
+      // console.log("  ~ result", result)
   
-      if (result === null) {
-        res.status(400).json({status : 400, message:`there are no Tools collection at the moment !`})
+      if (result.length === 0) {
+        res.status(404).json({status : 404, message:`there are no Tools collection at the moment !`})
         return
       }
       

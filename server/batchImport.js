@@ -1,3 +1,7 @@
+const { tools } = require("./Data/dataFinal")
+const { clients } = require("./Data/clientData")
+// console.log("  ~ Tools", tools)
+
 const { MongoClient } = require("mongodb");
 
 require('dotenv').config({ path: __dirname + '/.env' })
@@ -44,14 +48,14 @@ const options = {
       await client.connect();
 
       // declare 'db'
-      const db = client.db("Project-SlingAir");
+      const db = client.db("RentR");
    
       // declare 'collection'
       // insertMany takes an array of objects
       // each object is a document in the collection !
       
       console.log("inserting documents...")
-      await db.collection("flights").insertMany(result);
+      await db.collection("Tools3").insertMany(clients);
       
       console.log("Data uploaded Successfully!😁")
     } 
