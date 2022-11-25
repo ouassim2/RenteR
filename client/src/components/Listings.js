@@ -17,6 +17,8 @@ const Listings = () => {
   // console.log("  ~ user", user)
 
   useEffect(() => {
+        // maybee use is authenticated instead of user to send data to db as soon as user isAuthenticated ?
+      // to fix fetching not hapening as soon as user connect
     if (user) {
 
       const postData = async () => {

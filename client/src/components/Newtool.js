@@ -4,25 +4,33 @@ const Newtool = () => {
 
 //todo: fill out the form here and the server will patch the db with the info here 
 // e.target.value everything onChange of the inputs need to add the rest of keys in input as well
-    // const result = await fetch("/api/post-tools",{
-          //   method: "POST",
-          //   headers: {
-          //     Accept: "application/json",
-          //     "Content-Type": "application/json",
-          //   },
-          //   body:JSON.stringify({ 
+      const postNewTool = async () => {
+
+    const result = await fetch("/api/post-tools",{
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body:JSON.stringify({ 
           // toolCategorie: 
           //   toolName:
           //   toolId:
           //  priceOneHour:
           //  priceOneDay:
           // toolImageSrc:
-            // })
-          // })
+            })
+          })
 
-          // const parsedData = await result.json()
-          // const { userName } = parsedData.objectToDb
-          // console.log("  ~ userName", userName)
+          const parsedData = await result.json()
+          const { userName } = parsedData.objectToDb
+          console.log("  ~ userName", userName)
+
+        }
+
+        // postNewTool()
+
+
     return ( 
     <>
 
@@ -31,13 +39,17 @@ const Newtool = () => {
           <h1>New Tool</h1>
           <form >
             <MiniWrapper>
-              <label>Tool name:</label>
-              <input autoFocus type="text" id="toolname" required />
+              <label>Tool Categorie:</label>
+              <input autoFocus type="text" id="toolcategorie" required />
             </MiniWrapper>
             <MiniWrapper>
+              <label>Tool name:</label>
+              <input type="text" id="toolname" required />
+            </MiniWrapper>
+            {/* <MiniWrapper>
               <label>Tool brand:</label>
               <input type="text" id="toolbrand" required />
-            </MiniWrapper>
+            </MiniWrapper> */}
             <MiniWrapper>
               <label>Price 1 Hour:</label>
               <input type="number" id="Price1Hour" required />
@@ -45,6 +57,11 @@ const Newtool = () => {
             <MiniWrapper>
               <label>Price 1 Day:</label>
               <input type="number" id="Price1Day" required />
+            </MiniWrapper>
+            <MiniWrapper>
+              <label>Tool image:</label>
+              {/* implement base 64 send to server */}
+              <input type="number" id="Toolimage" required />
             </MiniWrapper>
             {/* <MiniWrapper>
               <label>Email address:</label>

@@ -24,8 +24,8 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   .get("/api/get-tools", getTools)
-  .get("/api/get-tool/:username", getTool)
-  // .post("/api/post-tools", postTools) //todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
+  .get("/api/get-tool/:userName", getTool)
+  .post("/api/post-tools", postTools) //todo receive toolinfo from newtool component and add the username:"ouassim2" object with the data
 
   // ---------------------------------
   // Nothing to modify below this line

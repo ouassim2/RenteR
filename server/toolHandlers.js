@@ -49,75 +49,107 @@ const getTools = async (req, res) => {
   };
 
 const getTool = async (req, res) => {
-    // const { username } = req.params
-    // console.log("  ~ req.params", req.params)
-    // console.log("  ~ username", username)
-    
-   const objectToDb = {
-      ...req.params,
-      userName : req.params.username
-    }
+  // const { username } = req.params
+  // console.log("  ~ req.params", req.params)
+  // console.log("  ~ username", username)
   
-    try {
-      const db = await callDb()
-      //check if user exists in db
-      const userListings = await db.collection("Tools3").findOne({userName : req.params.username})
-  
-      // if not create user 
-    if(!userListings){
-      // console.log("no users with that username found in db")
-          const result = await db.collection("Tools3").insertOne(objectToDb)
-          // console.log("  ~ result", result)
-    }else{
-      //if user exists in db send the listing back to FE
-      res.status(200).json({status: 200, message: `here are all the listing for the user :${req.params.username}`, userListings })
-    }
+  const objectToDb = {
+    ...req.params,
+    // _id: "",
+    email: "",
 
-    } catch (error) {
-      console.log("  ~ error", error)
+    toolCategorie:"" ,
+    toolName : ""  ,
+    toolId :  "" ,
+    priceOneHour:  "" ,
+    priceOneDay:  "" ,
+    toolImageSrc:  ""
+  }
+
+  try {
+    const db = await callDb()
+    //check if user exists in db
+    const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
+    // console.log("  ~ userListings", userListings)
+
+  //   if not create user 
+  if(!userListings){
+    // console.log("no users with that username found in db creating user ...")
+        const result = await db.collection("Tools3").insertOne(objectToDb)
+        
+        // send the user tool listing back to FE
+      const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
       
-    }
+      // console.log("  ~ toolnames for the user are ", userListings)
+
+    res.status(200).json({status: 200, message: `here are all the listing for the user :${req.params.userName}`, userListings })
+
+
+  }
+
+    if(userListings){
+    //if user exists in db and has at least 1 listing send the user tool listing back to FE
+    // console.log("  ~ user exists !")
+    const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
+    // console.log("  ~ toolnames for the user are ", userListings)
+
+    res.status(200).json({status: 200, message: `here are all the listing for the user :${req.params.userName}`, userListings })
+  }
+
+  } catch (error) {
+    console.log("  ~ error", error)
+    
+  }
   
 }
 
 //todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
-// const postTools = async (req, res) => {
-//   const payLoad = req.body;
+const postTools = async (req, res) => {
+  const payLoad = req.body;
 
 
-//   const objectToDb = {
-//     ...payLoad,
-    
-//   }
+  const objectToDb = {
+    ...payLoad,
+    // _id: "",
+    // email: "",
+
+    // toolCategorie:"" ,
+    // toolName : ""  ,
+    // toolId :  "" ,
+    // priceOneHour:  "" ,
+    // priceOneDay:  "" ,
+    // toolImageSrc:  ""
+  }
   
   
-//   try{
+  try{
 
-//   const db = await callDb()
+  const db = await callDb()
 
-//   const newUser = await db.collection("Tools3").findOne({userName : req.body.userName})
+  const newUser = await db.collection("Tools3").insertOne(objectToDb)
+  
+  res.status(200).json({status: 200, message: "received!", objectToDb})
+  // if(!newUser){
+    // console.log("no users with that username found in db")
 
-//   if(!newUser){
-//     // console.log("no users with that username found in db")
-//     const result = await db.collection("Tools3").insertOne(objectToDb)
-//     console.log("  ~ result", result)
-//     res.status(200).json({status: 200, message: "received!", objectToDb})
-//   }else{
+    // const result = await db.collection("Tools3").insertOne(objectToDb)
+    // console.log("  ~ result", result)
+  // }else{
 
-//   }
+  // }
 
 
-//   }catch(err){
-//   console.log("  ~ err", err)
-//   }
+  }catch(err){
+  console.log("  ~ err", err)
+  }
 
-//   client.close()
-// }
+  client.close()
+}
 
 
 
 module.exports = {
   getTools,
   getTool,
-  // postTools,
+  postTools,
 };
