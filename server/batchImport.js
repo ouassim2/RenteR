@@ -69,4 +69,4 @@ const options = {
 
    }
 
-  //  batchImport()
+   batchImport()

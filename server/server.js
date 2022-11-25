@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools } = require("./toolHandlers")
+const { getTools, getTool, postTools } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -24,6 +24,8 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   .get("/api/get-tools", getTools)
+  .get("/api/get-tool/:username", getTool)
+  // .post("/api/post-tools", postTools) //todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
 
   // ---------------------------------
   // Nothing to modify below this line

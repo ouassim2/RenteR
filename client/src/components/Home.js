@@ -3,10 +3,11 @@ import  styled  from 'styled-components';
 
 const Home = () => {
   const [data, setData] = useState(null)
-  console.log("  ~ data", data)
+  // console.log("  ~ data", data)
   // auth0  returns an object auto integration doesnt work
   // can destruc. isAutenticated key (has true or false) from the useAuth0 hook!
 
+  //todo the info created from ouassim2 are here by default since we loop through the big Tools3 collection!
   useEffect(() => {
 
     const fetchData = async () => {

@@ -1,14 +1,19 @@
 // import { useContext } from "react";
-import styled from "styled-components";
 // import { CurrentUserContext } from "./CurrentUserContext";
 // import { COLORS } from './constants';
-import { GoLocation } from "react-icons/go"
-import { AiOutlineCalendar } from "react-icons/ai"
-import cat from "../assets/catMechanic.png"
-import catbg from "../assets/catMechanicbg.png"
 // import moment from 'moment';
+// import { GoLocation } from "react-icons/go"
+// import { AiOutlineCalendar } from "react-icons/ai"
+// import cat from "../assets/catMechanic.png"
+// import catbg from "../assets/catMechanicbg.png"
+import styled from "styled-components";
+import { NavLink } from "react-router-dom"
+import { useAuth0 } from "@auth0/auth0-react"
+import { CgProfile } from 'react-icons/cg';
+import bg from '../assets/bgnone.png'
 
 const MyProfile = () => {
+const {user, isAuthenticated} = useAuth0()
     
     // const { currentUser } = useContext(CurrentUserContext);
     
@@ -17,17 +22,22 @@ const MyProfile = () => {
     
     <ProfileWrapper>
 
-        <img src={catbg}/>
+            {user && user.picture ?  <div><img src={user.picture}  alt="profile-picture"/></div>
+            :
+            <CgProfile cursor="pointer" size="35" color="white" />
+            }
+
+        {/* <div><img src={cat}  alt="profile-picture"/></div> */}
          
-        <div><img src={cat}/></div>
+        <img src={bg}  alt="profile-picture-bg"/>
          
-         <button>New Tool</button>
+      <NavLink to="/new-tool"> <button>New Tool</button> </NavLink>   
   
          <Div1>
-          { "hello"}
+          { user?.nickname ? user.nickname : null}
          </Div1>
 
-         <Div2>
+         {/* <Div2>
           { <> 
           <p>@{ "hello" }</p>{"hello" } </>}
          </Div2>
@@ -43,7 +53,7 @@ const MyProfile = () => {
          <Div5>
           <div>{"hello"} Following</div>  <div>{ "hello"} Followers</div> 
          </Div5>
-         
+          */}
          {/* <Div6>
           <div>Tweets</div>
           <div>Media</div>
@@ -79,13 +89,14 @@ border-right: 1px solid black;
     button{
         height: 40px;
         padding: 0px 10px;
-        margin-left: 890px;
+        /* margin-left: 890px; */
         margin-top: 15px;
         font-size: large;
         border-radius: 15px;
         border: none;
         background-color: green;
         color: white;
+        cursor: pointer;
                 
     }
 
