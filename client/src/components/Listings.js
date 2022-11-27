@@ -1,25 +1,15 @@
-// import { AiOutlineRetweet } from "react-icons/ai";
-// import moment from 'moment';
-// import { useContext } from "react";
-// import { CurrentUserContext } from "./CurrentUserContext";
-// import InteractionBar from "./InteractionBar";
 import styled from "styled-components"
-import cat from "../assets/catMechanic.png"
-import catbg from "../assets/catMechanicbg.png"
-import { useNavigate } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const Listings = () => {
-  // const { userTweet } = useContext(CurrentUserContext)
-  // const navigate = useNavigate()
   const { user, isAuthenticated } = useAuth0()
-  // console.log("  ~ user", user)
+  const [listingInfo, setListingInfo] = useState(null);
+  const [responseStatus, setResponseStatus] = useState(null);
 
   useEffect(() => {
-        // maybee use is authenticated instead of user to send data to db as soon as user isAuthenticated ?
-      // to fix fetching not hapening as soon as user connect
-    if (user) {
+       
+    if (isAuthenticated) {
 
       const postData = async () => {
 
@@ -27,8 +17,11 @@ const Listings = () => {
           // getting all the tools from ouassim2 db
           const fetchTools = await fetch(`/api/get-tool/${user.nickname}`)
           const parsedTools = await fetchTools.json()
-          //todo: return an empty toolname key from the db so that means there are no tools for ouassim2 meaning we render no listing atm! in return
-          console.log("  ~ parsedTools", parsedTools)
+
+          // console.log("  ~ parsedTools", parsedTools)
+
+          setResponseStatus(parsedTools.status)
+          setListingInfo(parsedTools.userListings)
 
         } catch (error) {
           console.log("  ~ error", error)
@@ -39,53 +32,59 @@ const Listings = () => {
 
     }
 
-  }, [])
+  }, [isAuthenticated])
+
+// 
 
   return (
+    // user && responseStatus === 204 ? <h1>You currently have no listings !</h1> :
     <>
-      {/* { !userTweet ? <h1>Loading...</h1> :  */}
+      { user && listingInfo ? 
       <>
         {
-          // userTweet.tweetIds.map(( tweetId )=>{
+          listingInfo.map(({ _id, toolName, toolImageSrc, priceOneHour, priceOneDay }) => {
 
-          // i love double destructuring! isnt it nice haha
-          // const {id, author:{ avatarSrc, displayName, handle }, media, retweetFrom, status, timestamp} = userTweet.tweetsById[tweetId]
+          return(
 
-          // return(
+          <TweetRetweetWrapper key={_id}>
 
-          <TweetRetweetWrapper>
             <LeftColumn>
-              <img src={cat} />
+              <img src={user.picture} />
             </LeftColumn>
 
             <RightColumn>
-              <RetweetDiv>{"yess"}</RetweetDiv>
-
-              <NameHandleDiv>
-                {
-                  "ok"
-                  /* <h2 onClick={()=> navigate(`/profile/${handle}`)}>{displayName}</h2>  <h5>@{handle} - {moment(timestamp).format("MMM Do")}</h5> */
-                }
-              </NameHandleDiv>
-
-              <MediaOrStatusDiv>
-                {
-                  "hein"
-                  /* { media[0] ? <img src={ media[0].url }/> :  <div>{status}</div> } */
-                }
-              </MediaOrStatusDiv>
+              <ListingCard>
+            
+                <div>Name: {toolName}</div> 
+                <ToolImage src={toolImageSrc}/>
+                <div> 1 Hour : {priceOneHour}</div> 
+                <div>1 Day: {priceOneDay} </div> 
+             
+              </ListingCard>
             </RightColumn>
+
           </TweetRetweetWrapper>
 
-          // )
+          )
 
-          // })
+          })
         }
       </>
-      {/* } */}
+      : <h1>Loading...</h1> } 
     </>
   )
 }
+
+const ListingCard = styled.div`
+display: flex;
+
+div{
+  margin-right: 15px;
+}
+`
+const ToolImage = styled.img`
+  width:15px;
+`
 
 const TweetRetweetWrapper = styled.div`
   margin-top: 30px;
@@ -102,34 +101,6 @@ const LeftColumn = styled.div`
   }
 `
 const RightColumn = styled.div``
-const RetweetDiv = styled.div``
-const NameHandleDiv = styled.div`
-  display: flex;
-  margin-top: 7px;
-  height: 40px;
 
-  h2 {
-    cursor: pointer;
-  }
-
-  h5 {
-    margin-left: 5px;
-    margin-top: 9px;
-    color: darkgray;
-  }
-`
-const MediaOrStatusDiv = styled.div`
-  img {
-    width: 1000px;
-    height: 600px;
-    border-radius: 15px;
-    margin-top: 15px;
-  }
-
-  div {
-    margin-top: 10px;
-    font-size: large;
-  }
-`
 
 export default Listings

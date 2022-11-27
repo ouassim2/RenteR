@@ -1,80 +1,88 @@
+import { useState } from 'react';
 import styled  from 'styled-components';
+import FileBase64 from "react-file-base64"
+import { useAuth0 } from "@auth0/auth0-react"
 
 const Newtool = () => {
-
-//todo: fill out the form here and the server will patch the db with the info here 
-// e.target.value everything onChange of the inputs need to add the rest of keys in input as well
-      const postNewTool = async () => {
-
-    const result = await fetch("/api/post-tools",{
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body:JSON.stringify({ 
-          // toolCategorie: 
-          //   toolName:
-          //   toolId:
-          //  priceOneHour:
-          //  priceOneDay:
-          // toolImageSrc:
-            })
-          })
-
-          const parsedData = await result.json()
-          const { userName } = parsedData.objectToDb
-          console.log("  ~ userName", userName)
-
-        }
-
-        // postNewTool()
-
-
+  const {user, isAuthenticated} = useAuth0()
+  
+  const [formData, setFormData] = useState({})
+  console.log("  ~ formData", formData)
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    const postNewTool = async () => {
+      setFormData({ ...formData, userName : user?.nickname ? user.nickname : "" })
+      
+      const result = await fetch("/api/post-tools",{
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify({...formData })
+      })
+      if(result.status === 413){
+        window.alert("Your files are too Powerful please choose a smaller size file!")
+      } else if (result.status === 200){
+        window.alert("Tool Added Successfully!")
+      }
+      
+    }
+    
+    postNewTool()
+    
+  }
+  
     return ( 
     <>
 
     <BodyWrapper>
     <Wrapper>
           <h1>New Tool</h1>
-          <form >
+          <form onSubmit={(e)=> handleSubmit(e)}>
             <MiniWrapper>
               <label>Tool Categorie:</label>
-              <input autoFocus type="text" id="toolcategorie" required />
+              <select required onChange={(e) => setFormData({ ...formData, toolCategorie : e.target.value })}>
+                <option value="">Pick a Categorie!</option>
+                <option value="">-------------------</option>
+                <option value="gardentool">Garden tool</option>
+                <option value="plumbingtool">Plumbing tool</option>
+                <option value="mechanictool">Mechanic tool</option>
+                <option value="electriciantool">Electrician tool</option>
+                <option value="constructiontool">Construction tool</option>
+                <option value="wintertool">Winter tool</option>
+               
+              </select>
+
             </MiniWrapper>
+
             <MiniWrapper>
               <label>Tool name:</label>
-              <input type="text" id="toolname" required />
+              <input onChange={(e)=> setFormData({...formData, toolName: e.target.value }) } type="text" id="toolname" required />
             </MiniWrapper>
-            {/* <MiniWrapper>
-              <label>Tool brand:</label>
-              <input type="text" id="toolbrand" required />
-            </MiniWrapper> */}
+
             <MiniWrapper>
               <label>Price 1 Hour:</label>
-              <input type="number" id="Price1Hour" required />
+              <input onChange={(e)=> setFormData({...formData, priceOneHour: e.target.value }) } type="number" id="Price1Hour" required />
             </MiniWrapper>
+
             <MiniWrapper>
               <label>Price 1 Day:</label>
-              <input type="number" id="Price1Day" required />
+              <input onChange={(e)=> setFormData({...formData, priceOneDay: e.target.value }) } type="number" id="Price1Day" required />
             </MiniWrapper>
+
             <MiniWrapper>
               <label>Tool image:</label>
-              {/* implement base 64 send to server */}
-              <input type="number" id="Toolimage" required />
+              <FileBase64 multiple={ false } onDone={( { base64 } ) => setFormData({...formData, toolImageSrc: base64 })}/>
             </MiniWrapper>
-            {/* <MiniWrapper>
-              <label>Email address:</label>
-              <input type="email" id="email" required />
-            </MiniWrapper>
-            <MiniWrapper>
-              <label>Phone number:</label>
-              <input type="tel" id="phone" required />
-            </MiniWrapper> */}
+           
             <footer>
               <ClearButton type="reset">Clear</ClearButton>
               <SubmitButton type="submit">Submit</SubmitButton>
             </footer>
+
           </form>
         </Wrapper>
         </BodyWrapper>
@@ -89,6 +97,7 @@ const BodyWrapper = styled.div`
   justify-content: center;
   /* background-color: #f0ead6; */
 `;
+
 
 const Wrapper = styled.div`
   margin-top: 32px;
@@ -107,6 +116,13 @@ const Wrapper = styled.div`
   }
 
   input {
+    border: 1px inset lightgray;
+    border-radius: 3px;
+    margin-top: 5px;
+    width: 170px;
+    height: 20px;
+  }
+  select {
     border: 1px inset lightgray;
     border-radius: 3px;
     margin-top: 5px;

@@ -7,7 +7,7 @@ const SearchBar = () => {
   const [value, setValue] = useState(""); // to store the search querry
 
   const handleSelect = () => {
-    window.alert("should bring to a new matching search querry page?"); // if a user type fitbit hit enter should go to a new page with all the fitbit
+    window.alert("should bring to a new matching search querry page!"); // if a user type fitbit hit enter should go to a new page with all the fitbit
   };
 
   const handlesubmit = (e) => { // prevent the default behavior of the page reload for the form onSubmit event handler

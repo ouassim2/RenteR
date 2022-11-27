@@ -3,6 +3,7 @@
 const { json } = require("express");
 const { MongoClient } = require("mongodb");
 
+
 require("dotenv").config({ path: __dirname + "/.env" });
 const { MONGO_URI } = process.env;
 
@@ -39,14 +40,13 @@ const getTools = async (req, res) => {
         res.status(404).json({status : 404, message:`there are no Tools collection at the moment !`})
         return
       }
-      
       res.status(200).json({message:"here are all the tools !", result })
   
     } catch (err) {
       console.log(err.stack);
     } 
       client.close();
-  };
+}
 
 const getTool = async (req, res) => {
   // const { username } = req.params
@@ -75,14 +75,14 @@ const getTool = async (req, res) => {
   //   if not create user 
   if(!userListings){
     // console.log("no users with that username found in db creating user ...")
-        const result = await db.collection("Tools3").insertOne(objectToDb)
+        // const result = await db.collection("Tools3").insertOne(objectToDb)
         
         // send the user tool listing back to FE
-      const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
+      // const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
       
       // console.log("  ~ toolnames for the user are ", userListings)
 
-    res.status(200).json({status: 200, message: `here are all the listing for the user :${req.params.userName}`, userListings })
+    res.status(204).json({status: 204, message: `no listings found for user :${req.params.userName}`})
 
 
   }
@@ -111,16 +111,18 @@ const postTools = async (req, res) => {
   const objectToDb = {
     ...payLoad,
     // _id: "",
+    // toolId :  "" , // maybee add uuid if duplicate keys...
+
     // email: "",
 
     // toolCategorie:"" ,
     // toolName : ""  ,
-    // toolId :  "" ,
     // priceOneHour:  "" ,
     // priceOneDay:  "" ,
     // toolImageSrc:  ""
   }
   
+  console.log("  ~ objectToDb", objectToDb)
   
   try{
 
@@ -129,6 +131,8 @@ const postTools = async (req, res) => {
   const newUser = await db.collection("Tools3").insertOne(objectToDb)
   
   res.status(200).json({status: 200, message: "received!", objectToDb})
+
+
   // if(!newUser){
     // console.log("no users with that username found in db")
 
@@ -145,6 +149,7 @@ const postTools = async (req, res) => {
 
   client.close()
 }
+
 
 
 

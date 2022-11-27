@@ -37,9 +37,6 @@ const navigate = useNavigate();
             </DropDownMenu>
             }
 
-            {/* {isAuthenticated && <h1>{console.log(user)}</h1>} */}
-
-            
         </Wrapper>
      );
 }

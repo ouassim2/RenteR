@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
 import  styled  from 'styled-components';
+import { useState, useEffect, useContext  } from "react"
+import { ToolContext } from './ToolContext';
+
 
 const Home = () => {
-  const [data, setData] = useState(null)
-  // console.log("  ~ data", data)
-  // auth0  returns an object auto integration doesnt work
-  // can destruc. isAutenticated key (has true or false) from the useAuth0 hook!
+  //Todo why does this component not rerendering when i click on home but before 
+  // with no context / just state and fetch it was rerendering ?
+  const {homeToolList, setHomeToolList} = useContext(ToolContext)
 
-  //todo the info created from ouassim2 are here by default since we loop through the big Tools3 collection!
   useEffect(() => {
 
     const fetchData = async () => {
@@ -16,7 +16,8 @@ const Home = () => {
         const parsedData = await data.json()
         // console.log("  ~ parsedData", parsedData.result)
 
-        setData(parsedData.result)
+        setHomeToolList(parsedData.result)
+
       } catch (error) {
         console.log("  ~ error", error)
       }
@@ -27,13 +28,13 @@ const Home = () => {
 
   return (
     <>
-     {!data ? <h1>Loading...</h1>:
+     {!homeToolList ? <h1>Loading...</h1>:
       <>
       <h1>Listings</h1>
       <ul>
-      {data.map(({toolName,toolImageSrc,priceOneHour,priceOneDay,toolId})=>{
+      {homeToolList.map(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id })=>{
         return(
-          <ListingCard key={toolId}>
+          <ListingCard key={_id}>
             
            <div>Name: {toolName}</div> 
            <ToolImage src={toolImageSrc}/>
@@ -46,9 +47,7 @@ const Home = () => {
 
       })}
       </ul>
-
    
-
       </>
       }
     </>
