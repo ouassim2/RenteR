@@ -1,18 +1,20 @@
 "use strict";
 
-const { json } = require("express");
 const { MongoClient } = require("mongodb");
 
-
 require("dotenv").config({ path: __dirname + "/.env" });
-const { MONGO_URI } = process.env;
+// const { MONGO_URI } = process.env;
+const { MONGO_URI_TORONTO } = process.env;
+
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-const client = new MongoClient(MONGO_URI, options);
+// const client = new MongoClient(MONGO_URI, options);
+const client = new MongoClient(MONGO_URI_TORONTO, options);
+
 
 const callDb = async () => {
     // connect...
@@ -101,7 +103,7 @@ const getToolsByUsername = async (req, res) => {
     // if not there is no listing for the user
   if(userListings.length === 0){
 
-    console.log("no listings found !")
+    // console.log("no listings found !")
     res.status(200).json({status: 200, message: `no listings found for user :${req.params.userName}`, userListings})
 
   }else{

@@ -5,42 +5,44 @@ const { clients } = require("./Data/clientData")
 const { MongoClient } = require("mongodb");
 
 require('dotenv').config({ path: __dirname + '/.env' })
-const { MONGO_URI } = process.env;
+// const { MONGO_URI } = process.env;
+const { MONGO_URI_TORONTO } = process.env;
 
 const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  };
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
 // apparament we need to use map i use forEach will see ... its map lol
 
-  // const result = Object.entries(flights).map(( [key, value] )=>{
-// // db -> Project-Slingair
-// // collection -> flights
-// // documents (objects) -> {flight : "SA231", seats : [{..},{..},{..}]} 
-// //                        {flight : "FD489", seats : [{..},{..},{..}]}
-//  return document = {
-//         _id : key,
-//        flight : key,
-//        seats: value
-//     }
-
-// })
-//  console.log(result) 
- 
-
-//  const result = reservations.map(({email,flight,givenName,id,seat,surname})=>{
-// collection -> reservations
-// documents (objects) -> {...}
-//                        {...}
-
-// return {_id:id,flight,seat,givenName,surname,email}
-// })
-
-
-  const batchImport = async () => {
-    // creates a new client
-    const client = new MongoClient(MONGO_URI, options);
+// const result = Object.entries(flights).map(( [key, value] )=>{
+  // // db -> Project-Slingair
+  // // collection -> flights
+  // // documents (objects) -> {flight : "SA231", seats : [{..},{..},{..}]} 
+  // //                        {flight : "FD489", seats : [{..},{..},{..}]}
+  //  return document = {
+    //         _id : key,
+    //        flight : key,
+    //        seats: value
+    //     }
+    
+    // })
+    //  console.log(result) 
+    
+    
+    //  const result = reservations.map(({email,flight,givenName,id,seat,surname})=>{
+      // collection -> reservations
+      // documents (objects) -> {...}
+      //                        {...}
+      
+      // return {_id:id,flight,seat,givenName,surname,email}
+      // })
+      
+      
+      const batchImport = async () => {
+        // creates a new client
+    // const client = new MongoClient(MONGO_URI, options);
+    const client = new MongoClient(MONGO_URI_TORONTO, options);
    
     try {
       // connect...
