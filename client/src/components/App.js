@@ -5,6 +5,8 @@ import GlobalStyles from "../GlobalStyles";
 import Navbar from "./Navbar";
 import UserProfile from "./UserProfile"
 import Newtool from "./Newtool";
+import ToolDetails from "./ToolDetails";
+import RentMe from "./RentMe";
 
 const App = () => {
 
@@ -16,8 +18,10 @@ const App = () => {
 
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/profil/:id" element={<UserProfile/>} />
+              <Route path="/tool/details/:id" element={<ToolDetails />} />
+              <Route path="/profil/:username" element={<UserProfile/>} />
               <Route path="/new-tool" element={<Newtool/>} />
+              <Route path="/rent-tool/:id" element={<RentMe/>} />
 
             </Routes>
 

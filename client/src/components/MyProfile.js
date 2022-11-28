@@ -76,7 +76,7 @@ const Div1 = styled.div`
 `
 const NoPic = styled.div`
     position: absolute;
-    top: 200px;
+    top: 380px;
     margin: 15px;
 `
 const BgImage = styled.img`

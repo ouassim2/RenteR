@@ -1,30 +1,16 @@
 import  styled  from 'styled-components';
-import { useState, useEffect, useContext  } from "react"
+import {  useContext  } from "react"
 import { ToolContext } from './ToolContext';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
   //Todo why does this component not rerendering when i click on home but before 
   // with no context / just state and fetch it was rerendering ?
-  const {homeToolList, setHomeToolList} = useContext(ToolContext)
+  const {homeToolList} = useContext(ToolContext)
 
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const data = await fetch("/api/get-tools")
-        const parsedData = await data.json()
-        // console.log("  ~ parsedData", parsedData.result)
-
-        setHomeToolList(parsedData.result)
-
-      } catch (error) {
-        console.log("  ~ error", error)
-      }
-    }
-
-    fetchData()
-  }, [])
+  const navigate = useNavigate()
 
   return (
     <>
@@ -34,16 +20,21 @@ const Home = () => {
       <ul>
       {homeToolList.map(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id })=>{
         return(
-          <ListingCard key={_id}>
+
+        <Link to={`/tool/details/${_id}`} key={_id}> 
+            <ListingCard>
+              
+              <div>Name: {toolName}</div> 
+              <ToolImage src={toolImageSrc}/>
+              <div> 1 Hour : {priceOneHour}</div> 
+              <div>1 Day: {priceOneDay} </div> 
+
+            <Link to={`/rent-tool/${_id}`}> <button >Rent!</button> </Link>
             
-           <div>Name: {toolName}</div> 
-           <ToolImage src={toolImageSrc}/>
-           <div> 1 Hour : {priceOneHour}</div> 
-           <div>1 Day: {priceOneDay} </div> 
-           <button>Rent!</button>
-            
-          </ListingCard>
-        )      
+            </ListingCard>
+
+        </Link>
+          )      
 
       })}
       </ul>
@@ -56,10 +47,12 @@ const Home = () => {
 
 const ListingCard = styled.div`
 display: flex;
-
+/* z-index: 1; */
 div{
   margin-right: 15px;
 }
+
+
 `
 
 const ToolImage = styled.img`

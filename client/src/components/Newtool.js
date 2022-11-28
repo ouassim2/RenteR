@@ -12,27 +12,29 @@ const Newtool = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    const postNewTool = async () => {
-      setFormData({ ...formData, userName : user?.nickname ? user.nickname : "" })
-      
-      const result = await fetch("/api/post-tools",{
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body:JSON.stringify({...formData })
-      })
-      if(result.status === 413){
-        window.alert("Your files are too Powerful please choose a smaller size file!")
-      } else if (result.status === 200){
-        window.alert("Tool Added Successfully!")
+    if (isAuthenticated){
+
+      const postNewTool = async () => {
+        
+        const result = await fetch("/api/post-tools",{
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body:JSON.stringify({...formData })
+        })
+        if(result.status === 413){
+          window.alert("Your files are too Powerful please choose a smaller size file!")
+        } else if (result.status === 200){
+          window.alert("Tool Added Successfully!")
+        }
+        
       }
       
+      postNewTool()
+      
     }
-    
-    postNewTool()
-    
   }
   
     return ( 
@@ -60,7 +62,7 @@ const Newtool = () => {
 
             <MiniWrapper>
               <label>Tool name:</label>
-              <input onChange={(e)=> setFormData({...formData, toolName: e.target.value }) } type="text" id="toolname" required />
+              <input onChange={(e)=> setFormData({...formData, toolName: e.target.value, userName : user?.nickname ? user.nickname : "" }) } type="text" id="toolname" required />
             </MiniWrapper>
 
             <MiniWrapper>

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import SearchBar from "./SearchBar"
 import logo from "../assets/logo.png"
 import Navprofile from "./Navprofile"
+import {FaTools} from "react-icons/fa"
 
 const Navbar = () => {
   return (
@@ -12,7 +13,7 @@ const Navbar = () => {
           <LeftColumn>
             <LinkItem to="/">
               {" "}
-              <Logo src={logo} alt="Health watch" />{" "}
+              <FaTools size="20px"/>
             </LinkItem>
             <LinkItem to="/">
               {" "}
@@ -74,6 +75,7 @@ const LinkItem = styled(NavLink)`
 const Logo = styled.img`
   margin-left: 20px;
   width: 40px;
+  color: white;
 `
 // const CartLogo = styled.img`
 //   width: 55px;

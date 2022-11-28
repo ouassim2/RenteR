@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { ToolContext } from "./ToolContext";
 
 // search through product inventory. state/props passed from app
 const SearchBar = () => {
   const [value, setValue] = useState(""); // to store the search querry
+
+  const { homeToolList } = useContext(ToolContext)
+  // console.log("  ~ homeToolList", homeToolList)
+
 
   const handleSelect = () => {
     window.alert("should bring to a new matching search querry page!"); // if a user type fitbit hit enter should go to a new page with all the fitbit
@@ -17,33 +22,33 @@ const SearchBar = () => {
   let ResultArray = []
   let slicedResultArray = []
 
-  // if (noneFilteredItems && value.length >= 1) { // we make sure the filtering starts only after 2 inputs have registered and we wait for our prop to load(the fetch)
+  if (homeToolList && value.length >= 1) { // we make sure the filtering starts only after 2 inputs have registered and we wait for our prop to load(the fetch)
 
-  //   noneFilteredItems.forEach(({ name, price, _id, numInStock, imageSrc }) => {
-  //     let upperCaseUserInput = value.toUpperCase() // to case incentise 
-  //     let upperCaseWatchName = name.toUpperCase() // to case incentise 
+    homeToolList.forEach(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id }) => {
+      let upperCaseUserInput = value.toUpperCase() // to case incentise 
+      let upperCaseToolName = toolName.toUpperCase() // to case incentise 
 
-  //     let result = upperCaseWatchName.includes(upperCaseUserInput) // if the user input = name result will be true
+      let result = upperCaseToolName.includes(upperCaseUserInput) // if the user input = toolName result will be true
 
-  //     if (result && numInStock >= 1) { // we check if result is true AND item not out of stock 
-  //       ResultArray.push({ _id, name, price, imageSrc }) // we push the filtered new object to our array 
+      if (result ) { // we check if result is true  
+        ResultArray.push({ _id, toolName, priceOneHour, toolImageSrc }) // we push the filtered new object to our array 
 
-  //       slicedResultArray = ResultArray.slice(0, 5) // we finally make sure to get a shallow copy with only 5 noneFilteredItems 
+        slicedResultArray = ResultArray.slice(0, 5) // we finally make sure to get a shallow copy with only 5 noneFilteredItems 
 
-  //     }
+      }
 
-  //   })
+    })
 
-  // }
+  }
 
 
   return (
     <Wrapper>
       <form onSubmit={(e) => handlesubmit(e)}>
 
-        {/* {!noneFilteredItems ? ( */}
-          {/* <h1>Loading...</h1> */}
-        {/* ) : ( */}
+        {!homeToolList ? (
+           <h1>Loading...</h1>
+         ) : ( 
           <>
             <Input
               value={value}
@@ -63,30 +68,30 @@ const SearchBar = () => {
             </Ok>
 
             <StyledUl>
-              {slicedResultArray.map(({ name, price, _id, imageSrc }) => {
+              {slicedResultArray.map(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id }) => {
 
                 let upperCaseUserInput = value.toUpperCase() // to case incentise 
-                let upperCaseWatchName = name.toUpperCase() // to case incentise 
+                let upperCaseToolName = toolName.toUpperCase() // to case incentise 
 
                 return (
                   // a clickable link to go to each watch by its id
-                  <LinkItem key={_id} to={`/product/${_id}`} onClick={() => setValue("")} >
+                  <LinkItem key={_id} to={`/tool/details/${_id}`} onClick={() => setValue("")} >
 
                     <MiniWrapper>
 
-                      <WatchImage src={imageSrc} alt="mini-WatchImages" />
+                      <ToolImage src={toolImageSrc} alt="mini-ToolImages" />
                       <StyledLi>
-                        {name.slice(
+                        {toolName.slice(
                           0,
-                          upperCaseWatchName.indexOf(upperCaseUserInput) + value.length
+                          upperCaseToolName.indexOf(upperCaseUserInput) + value.length
                         )}
 
                         <span>
-                          {name.slice(
-                            upperCaseWatchName.indexOf(upperCaseUserInput) + value.length
+                          {toolName.slice(
+                            upperCaseToolName.indexOf(upperCaseUserInput) + value.length
                           )}
                         </span>
-                        <p>Price : {price}</p>
+                        <p>Price : {priceOneHour}</p>
 
                       </StyledLi>
 
@@ -97,7 +102,7 @@ const SearchBar = () => {
               })}
             </StyledUl>
           </>
-        {/* )} */}
+        )}
       </form>
     </Wrapper>
   );
@@ -119,7 +124,7 @@ const MiniWrapper = styled.div`
 display: flex;
 border-radius: 5px;
 `
-const WatchImage = styled.img`
+const ToolImage = styled.img`
 width: 80px;
 background-color: blue;
 border-radius: 5px;
@@ -131,7 +136,7 @@ const StyledUl = styled.ul`
     display: flex;
     flex-direction: column;
   margin-top: 10px;
-  width: 400px;
+  /* width: 400px; */
   height: 0; // check
   padding: 0px 20px;
   /* -webkit-box-shadow: 5px 5px 15px 5px #000000;

@@ -48,23 +48,49 @@ const getTools = async (req, res) => {
       client.close();
 }
 
-const getTool = async (req, res) => {
+const getToolById = async (req, res) => {
+  const {id} = req.params
+  console.log("  ~ id", id)
+
+
+  try {
+
+    const db = await callDb()
+    
+    const result = await db.collection("Tools3").findOne({_id : id})
+ 
+    if (result === null){
+      res.status(400).json({status : 400, message:`no tool with that id exists !`})
+      return
+    }
+
+    res.status(200).json({message:`Here is the tool id: ${id}!`, result })
+
+    
+  } catch (error) {
+    console.log("  ~ error", error)
+    
+  }
+  client.close()
+}
+
+const getToolsByUsername = async (req, res) => {
   // const { username } = req.params
   // console.log("  ~ req.params", req.params)
   // console.log("  ~ username", username)
   
-  const objectToDb = {
-    ...req.params,
-    // _id: "",
-    email: "",
+  // const objectToDb = {
+  //   ...req.params,
+  //   // _id: "",
+  //   email: "",
 
-    toolCategorie:"" ,
-    toolName : ""  ,
-    toolId :  "" ,
-    priceOneHour:  "" ,
-    priceOneDay:  "" ,
-    toolImageSrc:  ""
-  }
+  //   toolCategorie:"" ,
+  //   toolName : ""  ,
+  //   toolId :  "" ,
+  //   priceOneHour:  "" ,
+  //   priceOneDay:  "" ,
+  //   toolImageSrc:  ""
+  // }
 
   try {
     const db = await callDb()
@@ -72,22 +98,13 @@ const getTool = async (req, res) => {
     const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
     // console.log("  ~ userListings", userListings)
 
-  //   if not create user 
-  if(!userListings){
-    // console.log("no users with that username found in db creating user ...")
-        // const result = await db.collection("Tools3").insertOne(objectToDb)
-        
-        // send the user tool listing back to FE
-      // const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
-      
-      // console.log("  ~ toolnames for the user are ", userListings)
+    // if not there is no listing for the user
+  if(userListings.length === 0){
 
-    res.status(204).json({status: 204, message: `no listings found for user :${req.params.userName}`})
+    console.log("no listings found !")
+    res.status(200).json({status: 200, message: `no listings found for user :${req.params.userName}`, userListings})
 
-
-  }
-
-    if(userListings){
+  }else{
     //if user exists in db and has at least 1 listing send the user tool listing back to FE
     // console.log("  ~ user exists !")
     const userListings = await db.collection("Tools3").find({userName : req.params.userName}).toArray()
@@ -106,6 +123,7 @@ const getTool = async (req, res) => {
 //todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
 const postTools = async (req, res) => {
   const payLoad = req.body;
+  console.log("  ~ payLoad", payLoad)
 
 
   const objectToDb = {
@@ -155,6 +173,7 @@ const postTools = async (req, res) => {
 
 module.exports = {
   getTools,
-  getTool,
+  getToolById,
+  getToolsByUsername,
   postTools,
 };

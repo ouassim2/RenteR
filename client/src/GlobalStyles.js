@@ -62,7 +62,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: gray;
+    background: #c8b7a6;
+    /* height: 100vh; */
   }
 
 

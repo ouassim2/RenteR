@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools, getTool, postTools } = require("./toolHandlers")
+const { getTools, getToolById, getToolsByUsername, postTools } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -23,9 +23,11 @@ express()
 
   // Nothing to modify above this line
   // ---------------------------------
-  .get("/api/get-tools", getTools)
-  .get("/api/get-tool/:userName", getTool)
-  .post("/api/post-tools", postTools) //todo receive toolinfo from newtool component and add the username:"ouassim2" object with the data
+  .get("/api/get-tools", getTools) // get all he tools available for rent!
+  .get("/api/get-tool/:id", getToolById) // get a single tool by id
+
+  .get("/api/get-tools/:userName", getToolsByUsername) // get all the tools for that particular username
+  .post("/api/post-tools", postTools) // post a single tool to Db
 
   // ---------------------------------
   // Nothing to modify below this line
