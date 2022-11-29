@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile"
 import Newtool from "./Newtool";
 import ToolDetails from "./ToolDetails";
 import RentMe from "./RentMe";
+import RentByProfession from "./RentByProfession";
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
               <Route path="/profil/:username" element={<UserProfile/>} />
               <Route path="/new-tool" element={<Newtool/>} />
               <Route path="/rent-tool/:id" element={<RentMe/>} />
+              <Route path="/rent-tool/profession/:id" element={<RentByProfession/>} />
 
             </Routes>
 

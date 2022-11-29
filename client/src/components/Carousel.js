@@ -1,44 +1,53 @@
 import { useEffect, useReducer, useRef } from "react"
 import styled from "styled-components"
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 
 const slides = [
   {
     title: "Mechanic Tools",
     // subtitle: "Peru",
-    // description: "Adventure is never far away",
+    toolCategorie: "mechanictool",
     image:
       "https://media.istockphoto.com/id/1284285153/photo/auto-mechanic-working-on-car-engine-in-mechanics-garage-repair-service-authentic-close-up-shot.jpg?b=1&s=170667a&w=0&k=20&c=hTcQR45ysPuDMBhdiYMmhrLasEZoeVPLKIWJQOAIf1Y=",
   },
   {
     title: "Construction Tools",
     // subtitle: "France",
-    // description: "Let your dreams come true",
+    toolCategorie: "constructiontool",
     image:
       "https://constructeurtravaux.fr/wp-content/uploads/2019/05/construction-maison-1.jpg",
   },
   {
     title: "Electrician Tools",
     // subtitle: "Australia",
-    // description: "A piece of heaven",
+    toolCategorie: "electriciantool",
     image:
       "https://www.hoffmannbros.com/wp-content/uploads/2022/07/Electrical-Services-Hoffmann-Brothers.jpg",
   },
   {
     title: "Garden Tools",
     // subtitle: "Australia",
-    // description: "A piece of heaven",
+    toolCategorie: "gardentool",
     image:
       "https://www.cnet.com/a/img/resize/cea01bb01a6e560a38cd1d5ecbe1c39173a85638/hub/2021/03/24/4077bd78-be3c-4a52-b81d-f51189cf4e5c/ryobi-mower-1.jpg?auto=webp&fit=crop&height=675&width=1200",
   },
   {
-    title: "Snow Tools",
+    title: "Winter Tools",
     // subtitle: "Australia",
-    // description: "A piece of heaven",
+    toolCategorie: "wintertool",
     image:
       "https://www.thespruce.com/thmb/jVIiSCyThCmOIgcq6qXuQLNaVco=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ariens_28in-Snow-Blower_02-65520a5673cd4d5099903bac523d90b3.jpg",
   },
+  {
+    title: "Plumbing Tools",
+    // subtitle: "Australia",
+    toolCategorie: "plumbingtool",
+    image:
+      "https://suburbanplumbingoc.com/wp-content/uploads/2020/06/How-Your-Home-Plumbing-System-Works.jpg",
+  },
 ]
+
 
 
 const initialState = {
@@ -62,6 +71,7 @@ const slidesReducer = (state, event) => {
 }
 
 const Slide = ({ slide, offset }) => {
+  const navigate = useNavigate()
 
   const useTilt = (active) => {
     const ref = useRef(null)
@@ -111,33 +121,33 @@ const Slide = ({ slide, offset }) => {
   const ref = useTilt(active)
 
   return (
-    <div
-      ref={ref}
-      className="slide"
-      data-active={active}
-      style={{
-        "--offset": offset,
-        "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
-      }}
-    >
-      <div
-        className="slideBackground"
+      <div 
+        ref={ref}
+        className="slide"
+        data-active={active}
         style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      />
-      <div
-        className="slideContent"
-        style={{
-          backgroundImage: `url('${slide.image}')`,
+          "--offset": offset,
+          "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
         }}
       >
-        <div className="slideContentInner">
-          <h2 className="slideTitle">{slide.title}</h2>
-          <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
+        <div 
+          className="slideBackground"
+          style={{
+            backgroundImage: `url('${slide.image}')`,
+          }}
+        />
+        <div onClick={()=>(navigate(`/rent-tool/profession/${slide.toolCategorie}`))}
+          className="slideContent"
+          style={{
+            backgroundImage: `url('${slide.image}')`,
+          }}
+        >
+          <div className="slideContentInner">
+            <h2 className="slideTitle">{slide.title}</h2>
+            {/* <h3 className="slideSubtitle">{slide.subtitle}</h3>
+            <p className="slideDescription">{slide.description}</p> */}
+          </div>
         </div>
-      </div>
     </div>
   )
 }
@@ -150,15 +160,17 @@ const Carousel = () => {
     <Wrapper>
       <h1>Rent by profession</h1>
 
-      <Slides>
-        <PrevButton onClick={() => dispatch({ type: "PREV" })}> <MdKeyboardArrowLeft/> </PrevButton>
+        <Slides >
 
-        {[...slides, ...slides, ...slides].map((slide, index) => {
-          let offset = slides.length + (state.slideIndex - index)
-          return <Slide slide={slide} offset={offset} key={index} />
-        })}
-        <NextButton onClick={() => dispatch({ type: "NEXT" })}> <MdKeyboardArrowRight/> </NextButton>
-      </Slides>
+          <PrevButton onClick={() => dispatch({ type: "PREV" })}> <MdKeyboardArrowLeft/> </PrevButton>
+
+          {[...slides, ...slides, ...slides].map((slide, index) => {
+            //
+            let offset = slides.length + (state.slideIndex - index)
+            return <Slide  slide={slide} offset={offset} key={index} />
+          })}
+          <NextButton onClick={() => dispatch({ type: "NEXT" })}> <MdKeyboardArrowRight/> </NextButton>
+        </Slides>
 
     </Wrapper>
   )
@@ -231,7 +243,7 @@ margin-right: 880px;
     }
 `
 const Slides = styled.div`
-
+cursor: pointer;
 display: grid;
    .slide {
     grid-area: 2 / 2;
@@ -386,7 +398,7 @@ body {
   transform: translateX(calc(10% * var(--dir)));
 }
 
-// makes the image look at your cursor
+// makes the image look at your cursor has the active slide
 .slide[data-active] {
   z-index: 2;
   pointer-events: auto;
