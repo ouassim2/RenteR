@@ -46,6 +46,10 @@ const Navbar = () => {
 const Wrapper = styled.div`
   background-color: black;
   height: 50px;
+  z-index: 10;
+
+  
+  
   nav {
     ul {
       display: flex;
@@ -53,30 +57,30 @@ const Wrapper = styled.div`
       justify-content: space-between;
     }
   }
-`
+  `
 const LinkItem = styled(NavLink)`
   text-decoration: none;
   color: white;
   padding-right: 20px;
   padding-left: 10px;
-
+  
   &.active {
     li {
       color: darkgray;
     }
   }
-
+  
   :hover {
     color: darkgray;
     transition: 0.3s ease-in-out;
   }
 `
 
-const Logo = styled.img`
-  margin-left: 20px;
-  width: 40px;
-  color: white;
-`
+// const Logo = styled.img`
+//   margin-left: 20px;
+//   width: 40px;
+//   color: white;
+// `
 // const CartLogo = styled.img`
 //   width: 55px;
 //   height: 50px;
@@ -88,15 +92,19 @@ const Logo = styled.img`
 // `;
 
 const RightColumn = styled.div`
+  z-index: 10;
   display: flex;
   align-items: center;
+  
   li {
     margin-right: 35px;
   }
 `
 const LeftColumn = styled.div`
+  z-index: 10;
   display: flex;
   align-items: center;
+
   /* height: 50px; */
 `
 

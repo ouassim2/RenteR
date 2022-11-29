@@ -110,6 +110,7 @@ const SearchBar = () => {
 
 const Wrapper = styled.div`
 width: 280px;
+z-index: 10;
 
   input {
     width: 200px;
@@ -128,7 +129,7 @@ const ToolImage = styled.img`
 width: 80px;
 background-color: blue;
 border-radius: 5px;
-z-index: 2;
+z-index: 10;
 /* transform: scale(0.90); */
 `
 const StyledUl = styled.ul`
