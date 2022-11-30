@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home"
+import Home from "./home/Home"
 import GlobalStyles from "../GlobalStyles";
 import Navbar from "./Navbar";
 import UserProfile from "./UserProfile"

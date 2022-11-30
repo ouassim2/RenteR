@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 import SearchBar from "./SearchBar"
-import logo from "../assets/logo.png"
 import Navprofile from "./Navprofile"
 import {FaTools} from "react-icons/fa"
 
