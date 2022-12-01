@@ -116,7 +116,6 @@ const Slide = ({ slide, offset }) => {
   }
 
 
-
   const active = offset === 0 ? true : null
   const ref = useTilt(active)
 

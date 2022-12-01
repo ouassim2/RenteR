@@ -2,9 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import  styled  from 'styled-components';
 import {  useContext  } from "react"
 import { ToolContext } from '../ToolContext';
+import { useAuth0 } from "@auth0/auth0-react"
+
 
 
 const HomeAllTools = () => {
+  const { isAuthenticated } = useAuth0()
+
     const {homeToolList} = useContext(ToolContext)
     const navigate = useNavigate()
 
@@ -23,7 +27,10 @@ const HomeAllTools = () => {
                     <div> 1 Hour : {priceOneHour}</div>
                     <div>1 Day: {priceOneDay} </div>
 
+                  {isAuthenticated ? 
                     <Button onClick={(e)=>(e.preventDefault(), navigate(`/rent-tool/${_id}`))}>Rent!</Button>
+                    : null
+                  }
                   </ListingCard>
                   
               </Link>

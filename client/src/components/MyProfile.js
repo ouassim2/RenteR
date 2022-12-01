@@ -17,7 +17,7 @@ const {user, isAuthenticated} = useAuth0()
             }
 
          
-        <BgImage src={bg}  alt="profile-picture-bg"/>
+        <BgImage src={bg} alt="profile-picture-bg"/>
 
 
          <Div1>
@@ -82,7 +82,7 @@ const NoPic = styled.div`
 const BgImage = styled.img`
    
     width: 100%;
-    height: 500px 
+    height: 500px ;
     
 `
 

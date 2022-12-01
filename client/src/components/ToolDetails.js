@@ -4,9 +4,13 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { ToolContext } from "./ToolContext";
 // import LoadingSpinner from "./LoadingSpinner";
+import { useAuth0 } from "@auth0/auth0-react"
+
 
 // displays details of each toolDetails when clicked on from homepage
 const ToolDetails = () => {
+  const { isAuthenticated } = useAuth0()
+
   const { id } = useParams();
   
   const { toolDetails, setToolDetails } = useContext(ToolContext);
@@ -58,9 +62,11 @@ useEffect(() => {
               <strong>ID: </strong>
               {toolDetails._id}
             </p>
-            
-           <Link to={`/rent-tool/${toolDetails._id}`}> <StyledButton> Rent ! </StyledButton> </Link>
 
+            {isAuthenticated ? 
+              <Link to={`/rent-tool/${toolDetails._id}`}> <StyledButton> Rent ! </StyledButton> </Link>
+              : null
+            }
           </ItemInfo>
         </Wrapper>
 

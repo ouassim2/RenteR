@@ -7,6 +7,7 @@ const Listings = () => {
   const [listingInfo, setListingInfo] = useState(null);
   console.log("  ~ listingInfo", listingInfo)
 
+  // use uuid maybee in the server to get the right tool on click
   useEffect(() => {
        
     if (isAuthenticated) {

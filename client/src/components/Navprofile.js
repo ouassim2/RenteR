@@ -26,7 +26,7 @@ const navigate = useNavigate();
             <DropDownMenu>
                 {!user ? null :
                 <>
-                <StyledLi onClick={(()=>{navigate(`/profil/${user.nickname}`)})}>Profil</StyledLi>
+                <StyledLi onClick={(()=>{navigate(`/profil/${user.nickname}`)})}>Profile</StyledLi>
                 </>
                 }
 

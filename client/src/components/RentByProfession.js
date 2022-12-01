@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import  styled  from 'styled-components';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react"
 
 const RentByProfession = () => {
-  const { id } = useParams()
+  
+  const { isAuthenticated } = useAuth0()
 
+  const { id } = useParams()
   const navigate = useNavigate()
 
   const [toolsByProfession, setToolsByProfession] = useState(null)
@@ -41,7 +44,10 @@ const RentByProfession = () => {
                     <div> 1 Hour : {priceOneHour}</div>
                     <div>1 Day: {priceOneDay} </div>
 
-                    <Button onClick={e =>( e.preventDefault(), navigate(`/rent-tool/${_id}`) )}>Rent!</Button>
+                    {isAuthenticated ? 
+                      <Button onClick={e =>( e.preventDefault(), navigate(`/rent-tool/${_id}`) )}>Rent!</Button>
+                      : null
+                    }
                   </ListingCard>
                   
               </Link>
