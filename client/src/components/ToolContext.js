@@ -4,7 +4,6 @@ export const ToolContext = createContext(null)
 
 const ToolProvider = ({ children }) => {
   // Home component states
-
   const [homeToolList, setHomeToolList] = useState(null)
   
   useEffect(() => {
@@ -28,6 +27,8 @@ const ToolProvider = ({ children }) => {
 
   // ToolDetails component states
   const [toolDetails, setToolDetails] = useState(null)
+
+  
 
   
   return (

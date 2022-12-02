@@ -350,7 +350,7 @@ body {
     rotateY(calc(-65deg * var(--dir)));
 }
 
-// creates the 3d dimension (the z axe basicly) for the font
+// creates the 3d dimension (the z axe basically) for the font
 .slideContentInner {
   transform-style: preserve-3d;
   // creates the 3d dimension (the z axe basicly)

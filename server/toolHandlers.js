@@ -52,7 +52,7 @@ const getTools = async (req, res) => {
 
 const getToolById = async (req, res) => {
   const {id} = req.params
-  console.log("  ~ id", id)
+  // console.log("  ~ id", id)
 
 
   try {

@@ -27,7 +27,7 @@ express()
   .get("/api/get-tool/:id", getToolById) // get a single tool by id
 
   .get("/api/get-tools/:username", getToolsByUsername) // get all the tools for that particular username
-  .get("/api/get-tools/profession/:profession", getToolsByProfession)
+  .get("/api/get-tools/profession/:profession", getToolsByProfession) // get all the tools for that particular profession
   .post("/api/post-tools", postTools) // post a single tool to Db
 
   // ---------------------------------
