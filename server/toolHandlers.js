@@ -73,7 +73,7 @@ const getToolById = async (req, res) => {
     console.log("  ~ error", error)
     
   }
-  client.close()
+  // client.close()
 }
 
 const getToolsByUsername = async (req, res) => {
