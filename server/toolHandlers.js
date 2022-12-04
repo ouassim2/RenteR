@@ -1,6 +1,7 @@
 "use strict";
 
 const { MongoClient } = require("mongodb");
+const { v4: uuidv4 } = require('uuid');
 
 require("dotenv").config({ path: __dirname + "/.env" });
 // const { MONGO_URI } = process.env;
@@ -147,7 +148,7 @@ const postTools = async (req, res) => {
 
   const objectToDb = {
     ...payLoad,
-    // _id: "",
+    _id: uuidv4(),
     // toolId :  "" , // maybee add uuid if duplicate keys...
 
     // email: "",
@@ -187,6 +188,68 @@ const postTools = async (req, res) => {
   client.close()
 }
 
+const getUserProfile = async (req, res) => {
+   const {username} = req.params
+
+   try {
+
+    const db = await callDb()
+    const userInfo = await db.collection("UsersProfiles").findOne({username})
+    // console.log("userInfo", userInfo)
+
+    res.status(200).json({status : 200, userInfo})
+    
+   } catch (error) {
+    console.log("error", error)
+    
+   }
+  // client.close()
+
+};
+
+const editUserProfile = async(req, res) => {
+  // will need to check if name profilpic and bg pic keys exist
+    // in the database if yes edit them if not create them
+    // so we patch them here (add if they dont exist) and fetch them in myprofil to append them
+  const {username} = req.params
+  // console.log("username", username)
+
+  const {name, profilePicture, bgImage} = req.body
+
+  const objToDB ={
+    _id: uuidv4(),
+    username,
+    ...req.body,
+  }
+
+  try {
+    
+    const db = await callDb()
+    
+    const result = await db.collection("UsersProfiles").findOne({username})
+    // console.log("result", result)
+    
+    if (!result){
+      // console.log("user no exist!")
+    const newUser = await db.collection("UsersProfiles").insertOne(objToDB)
+    // console.log("added user ", newUser)
+    res.status(200).json({status : 200, userInfo : req.body})
+    
+  }else{
+    // console.log("user exist already!")
+    const updatedUser = await db.collection("UsersProfiles").updateOne({username}, { $set: {...req.body} })
+    // console.log("updatedUser", updatedUser)
+    res.status(200).json({status : 200, userInfo : req.body})
+    }
+
+  } catch (error) {
+    console.log("error", error)
+    
+  }
+  client.close()
+
+}
+
 
 
 
@@ -196,4 +259,6 @@ module.exports = {
   getToolsByUsername,
   getToolsByProfession,
   postTools,
+  getUserProfile,
+  editUserProfile,
 };

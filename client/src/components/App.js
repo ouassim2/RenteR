@@ -8,6 +8,7 @@ import Newtool from "./Newtool";
 import ToolDetails from "./ToolDetails";
 import RentMe from "./RentMe";
 import RentByProfession from "./RentByProfession";
+import EditProfile from './EditProfile';
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
               <Route path="/tool/details/:id" element={<ToolDetails />} />
               <Route path="/profil/:username" element={<UserProfile/>} />
               <Route path="/new-tool" element={<Newtool/>} />
+              <Route path="/edit-profil" element={<EditProfile/>} />
               <Route path="/rent-tool/:id" element={<RentMe/>} />
               <Route path="/rent-tool/profession/:id" element={<RentByProfession/>} />
 

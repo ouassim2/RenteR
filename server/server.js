@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools, getToolById, getToolsByUsername, getToolsByProfession, postTools } = require("./toolHandlers")
+const { getTools, getToolById, getToolsByUsername, getToolsByProfession, postTools,getUserProfile, editUserProfile } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -29,6 +29,52 @@ express()
   .get("/api/get-tools/:username", getToolsByUsername) // get all the tools for that particular username
   .get("/api/get-tools/profession/:profession", getToolsByProfession) // get all the tools for that particular profession
   .post("/api/post-tools", postTools) // post a single tool to Db
+
+  .get("/api/get-user-profile/:username", getUserProfile) // get the user profile (name, pic, bg)
+  .patch("/api/edit-profile/:username", editUserProfile) // edit the user profile (name, pic, bg)
+
+  .get('/bot-message', (req, res) => {
+
+    let userInput = req.query.text
+    // get the message from the user and check if its
+    // included in the array commonGreetings
+
+
+    const getBotMessage = (userInput) => {
+      const commonGreetings = ["hi", "hello", "howdy","hey"];
+      const commonGoodbyes  = ["bye", "farewell", "so long", "adios", "see you", "ciao", "sayonara", "au revoir" ]
+      const adresse = ["adresse", "whats your adresse"]
+      const coming = ["coming", "around", "5", "perfect il be there around 5"]
+      
+      let botMsg = "";
+      
+      if (commonGreetings.includes(userInput.toLowerCase())) {
+        botMsg = "Hello";
+
+      } else if (commonGoodbyes.includes(userInput.toLowerCase())) {
+        botMsg = "Bye"
+
+      } else if (adresse.includes(userInput.toLowerCase())) {
+        botMsg = "my adresse is 2314 Rue Kaufman"
+      }
+       else if (coming.includes(userInput.toLowerCase())) {
+        botMsg = "ok il see you later !"
+      }
+      return botMsg;
+    };
+
+
+    const message = { author: 'Mr-Roboto', text: `${getBotMessage(userInput)}` };
+
+    const randomTime = Math.floor(Math.random() * 3000);
+    
+    setTimeout(() => {
+      
+      res.status(200).json({status: 200, message });
+
+    }, 2000);
+    
+  })
 
   // ---------------------------------
   // Nothing to modify below this line

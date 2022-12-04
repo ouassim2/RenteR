@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import styled from "styled-components"
+import Bot from "./Bot"
 
 const RentMe = () => {
   // const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID
@@ -12,6 +13,9 @@ const RentMe = () => {
   const { id } = useParams()
   const [emailInfo, setEmailInfo] = useState(null)
   const [rentalChoice, setRentalChoice] = useState(null);
+  const [showChat, setShowChat] = useState(false);
+  
+  console.log("showChat", showChat)
 
   useEffect(() => {
     const fetchEmail = async () => {
@@ -66,7 +70,7 @@ const RentMe = () => {
          const statusCode = await sentEmail.status
             if(statusCode === 200){
               window.alert("Request Sent Successfully!")
-              // e.target.reset()
+              setShowChat(true)
             }
     }
   }
@@ -111,11 +115,11 @@ const RentMe = () => {
             <MiniWrapper>
               <div>
                 <label> <span>Rent for:</span> 1 hour</label>
-                <input value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
+                <input required value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
               </div>
               <div>
                 <label> <span>Rent for:</span> 1 day</label>
-                <input value={emailInfo.priceOneDay} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Day"})} name="radio-family" type="radio"></input>
+                <input required value={emailInfo.priceOneDay} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Day"})} name="radio-family" type="radio"></input>
               </div>
             </MiniWrapper>
 
@@ -124,6 +128,9 @@ const RentMe = () => {
           </>
         )}
       </Div>
+      {!showChat ? null :
+      <Bot/>
+      }
     </>
   )
 }

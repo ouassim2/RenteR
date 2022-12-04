@@ -1,11 +1,12 @@
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const Listings = () => {
   const { user, isAuthenticated } = useAuth0()
   const [listingInfo, setListingInfo] = useState(null);
-  console.log("  ~ listingInfo", listingInfo)
+  // console.log("  ~ listingInfo", listingInfo)
 
   // use uuid maybee in the server to get the right tool on click
   useEffect(() => {
@@ -46,7 +47,9 @@ const Listings = () => {
 
           return(
 
-          <ToolWrapper key={_id}>
+       <Link to={`/tool/details/${_id}`} key={_id}>
+
+          <ToolWrapper >
 
             <LeftColumn>
               <img src={user.picture} />
@@ -64,6 +67,8 @@ const Listings = () => {
             </RightColumn>
 
           </ToolWrapper>
+
+          </Link>
 
           )
 
