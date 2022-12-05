@@ -18,7 +18,7 @@ const navigate = useNavigate();
         <Wrapper onMouseEnter={()=>{setIsToggled(!isToggled)}} onMouseLeave={()=>{setIsToggled(!isToggled)}}>
             <UserProfilePic>
 
-                {user && user.picture ? <img src={user.picture} alt="profile-picture" onClick={(()=>{navigate(`/profil/${user.nickname}`)})}/> 
+                {user && user.picture ? <img src={user.picture} alt="profile-picture" onClick={(()=>{navigate(`/profile/${user.nickname}`)})}/> 
                 :
                 <CgProfile cursor="pointer" size="35" color="white" />
                 }
@@ -30,7 +30,7 @@ const navigate = useNavigate();
             <DropDownMenu >
                 {!user ? null :
                 <>
-                <StyledLi onClick={(()=>{navigate(`/profil/${user.nickname}`)})}>Profile</StyledLi>
+                <StyledLi onClick={(()=>{navigate(`/profile/${user.nickname}`)})}>Profile</StyledLi>
                 </>
                 }
 

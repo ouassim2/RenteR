@@ -124,11 +124,10 @@ const RentMe = () => {
 
              <p>{isAuthenticated ? <StyledButton> Rent ! </StyledButton> : null} </p> 
             </form>
-            
-            <Bot/>
           </>
         }
       </Div>
+        <Bot/>
       {/* {!showChat ? <h1>Chat Loading!</h1> :
       } */}
     </>

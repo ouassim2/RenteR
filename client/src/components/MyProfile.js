@@ -48,12 +48,12 @@ const MyProfile = () => {
         <NoPic> <CgProfile cursor="pointer" size="200" color="white" /></NoPic>
       
 
-      :   // else the user has  uploaded profil info (pic) show it
+      :   // else the user has  uploaded profile info (pic) show it
        <div>
          <img src={profileInfo?.userInfo?.profilePicture} alt="profile-picture" />
        </div>
        }
-            {/*  the user has  uploaded profil info (bg) show it else show default bg*/}
+            {/*  the user has  uploaded profile info (bg) show it else show default bg*/}
       <BgImage src={profileInfo?.userInfo?.bgImage ? profileInfo?.userInfo?.bgImage : bg} alt="profile-picture-bg" />
 
       <Div1>
@@ -61,7 +61,7 @@ const MyProfile = () => {
         user?.nickname ? user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1) //if user has a picture in has a nickname in github show it (user is a github state from useAuth0 hook)
           : "User" // user has no nickname in github show string " user"
 
-        //   else the user has  uploaded profil info (name) show it (the rest is just to uppercase the first letter)
+        //   else the user has  uploaded profile info (name) show it (the rest is just to uppercase the first letter)
           : profileInfo?.userInfo?.name.charAt(0).toUpperCase() + profileInfo?.userInfo?.name.slice(1)} 
       </Div1>
 
@@ -69,7 +69,7 @@ const MyProfile = () => {
         <button>New Tool</button>
       </NavLink>
 
-      <NavLink to="/edit-profil">
+      <NavLink to="/edit-profile">
         <button>Edit Profile</button>
       </NavLink>
       </>

@@ -51,7 +51,7 @@ const EditProfile = () => {
 
             <MiniWrapper>
                 <label>Name:</label>
-                <input onChange={(e)=> setFormData({...formData, name: e.target.value, }) } type="text" id="name"  />
+                <input autoComplete='off' onChange={(e)=> setFormData({...formData, name: e.target.value, }) } type="text" id="name"  />
             </MiniWrapper>
 
             <MiniWrapper>

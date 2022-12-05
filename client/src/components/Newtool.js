@@ -68,12 +68,12 @@ const Newtool = () => {
 
             <MiniWrapper>
               <label>Tool name:</label>
-              <input onChange={(e)=> setFormData({...formData, toolName: e.target.value, userName : user?.nickname ? user.nickname : "" }) } type="text" id="toolname" required />
+              <input autoComplete='off' onChange={(e)=> setFormData({...formData, toolName: e.target.value, userName : user?.nickname ? user.nickname : "" }) } type="text" id="toolname" required />
             </MiniWrapper>
 
             <MiniWrapper>
               <label>Tool brand:</label>
-              <input onChange={(e)=> setFormData({...formData, brand: e.target.value}) } type="text" id="toolname" required />
+              <input autoComplete='off' onChange={(e)=> setFormData({...formData, brand: e.target.value}) } type="text" id="toolname" required />
             </MiniWrapper>
 
             <MiniWrapper>

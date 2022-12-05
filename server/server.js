@@ -44,7 +44,7 @@ express()
     const getBotMessage = (userInput) => {
       const commonGreetings = ["hi", "hello", "howdy","hey"];
       const commonGoodbyes  = ["bye", "farewell", "so long", "adios", "see you", "ciao", "sayonara", "au revoir" ]
-      const adresse = ["adresse", "whats your adresse"]
+      const address = ["address", "whats your address"]
       const coming = ["coming", "around", "5", "perfect il be there around 5"]
       
       let botMsg = "";
@@ -55,7 +55,7 @@ express()
       } else if (commonGoodbyes.includes(userInput.toLowerCase())) {
         botMsg = "bye"
 
-      } else if (adresse.includes(userInput.toLowerCase())) {
+      } else if (address.includes(userInput.toLowerCase())) {
         botMsg = "we can meet at 2314 Rue Kaufman"
       }
        else if (coming.includes(userInput.toLowerCase())) {

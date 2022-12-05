@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const Bot = () => {
+
   const messageInput = document.querySelector("#user-input")
   const conversationElem = document.querySelector("#conversation-container")
 
