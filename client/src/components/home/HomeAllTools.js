@@ -22,10 +22,10 @@ const HomeAllTools = () => {
               <Link to={`/tool/details/${_id}`} key={_id}>
                 
                   <ListingCard>
-                    <div>Name: {toolName}</div>
-                    <ToolImage src={toolImageSrc} />
-                    <div> 1 Hour : {priceOneHour}</div>
-                    <div>1 Day: {priceOneDay} </div>
+                    <div><strong>Name: </strong>{toolName}</div>
+                    <div><ToolImage src={toolImageSrc} /></div>
+                    <div><strong> 1 Hour </strong>: {priceOneHour}</div>
+                    <div><strong>1 Day: </strong>{priceOneDay} </div>
 
                   {isAuthenticated ? 
                     <Button onClick={(e)=>(e.preventDefault(), navigate(`/rent-tool/${_id}`))}>Rent!</Button>
@@ -52,22 +52,55 @@ h1{
 
 const ListingCard = styled.div`
   z-index: 10;
+  border-radius: 5px;
   display: flex;
-  width: 50%;
-  div {
-    z-index: 10;
-    margin-right: 15px;
-  }
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  height: 300px;
+  font-size: larger;  
+padding: 0px 75px;
+  /* box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); */
+    :hover{
+      background-color: #AD9F90;
+
+    }
+    /* &:active {
+    transform: scale(0.95);
+  } */
+      div {
+        z-index: 10;
+        /* margin-right: 80px; */
+    width:200px;
+
+      }
 
   `
 
 const ToolImage = styled.img`
 z-index: 10;
   width: 100px;
+  margin-left: 25px;
+  margin-right: 25px;
 `
 const Button = styled.button`
     z-index: 10;
     cursor: pointer;
     height: 50px;
+    width:105px;
+    font-size: medium;
+    letter-spacing: .05em;
+    background: black;
+    border: none;
+    border-radius: 5rem;
+    color: white;
+
+    &:active {
+    transform: scale(0.95);
+  }
+
+  &:hover {
+      background: goldenrod;
+    }
 `
 export default HomeAllTools

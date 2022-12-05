@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools, getToolById, getToolsByUsername, getToolsByProfession, postTools,getUserProfile, editUserProfile } = require("./toolHandlers")
+const { getTools, getToolById, getToolsByUsername, getToolsByProfession, getToolsByBrand, postTools,getUserProfile, editUserProfile } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -15,7 +15,7 @@ express()
 
   // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
   .use(morgan("tiny"))
-  .use(express.json())
+  .use(express.json({size: 1}))
   .use(helmet())
 
   // Any requests for static files will go into the public folder
@@ -28,6 +28,7 @@ express()
 
   .get("/api/get-tools/:username", getToolsByUsername) // get all the tools for that particular username
   .get("/api/get-tools/profession/:profession", getToolsByProfession) // get all the tools for that particular profession
+  .get("/api/get-tools/brand/:brand", getToolsByBrand) // get all the tools for that particular profession
   .post("/api/post-tools", postTools) // post a single tool to Db
 
   .get("/api/get-user-profile/:username", getUserProfile) // get the user profile (name, pic, bg)
@@ -49,13 +50,13 @@ express()
       let botMsg = "";
       
       if (commonGreetings.includes(userInput.toLowerCase())) {
-        botMsg = "Hello";
+        botMsg = "hello";
 
       } else if (commonGoodbyes.includes(userInput.toLowerCase())) {
-        botMsg = "Bye"
+        botMsg = "bye"
 
       } else if (adresse.includes(userInput.toLowerCase())) {
-        botMsg = "my adresse is 2314 Rue Kaufman"
+        botMsg = "we can meet at 2314 Rue Kaufman"
       }
        else if (coming.includes(userInput.toLowerCase())) {
         botMsg = "ok il see you later !"

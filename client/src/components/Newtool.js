@@ -66,6 +66,11 @@ const Newtool = () => {
             </MiniWrapper>
 
             <MiniWrapper>
+              <label>Tool brand:</label>
+              <input onChange={(e)=> setFormData({...formData, brand: e.target.value}) } type="text" id="toolname" required />
+            </MiniWrapper>
+
+            <MiniWrapper>
               <label>Price 1 Hour:</label>
               <input onChange={(e)=> setFormData({...formData, priceOneHour: e.target.value }) } type="number" id="Price1Hour" required />
             </MiniWrapper>
@@ -149,7 +154,7 @@ const MiniWrapper = styled.div`
 
 const ClearButton = styled.button`
   font-size: 15px;
-  background-color: #023f05;
+  background-color: goldenrod;
 
   color: white;
   border-radius: 5px;
@@ -159,8 +164,8 @@ const ClearButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #326841;
-  }
+      background: darkgoldenrod;
+    }
 
   &:active {
     transform: scale(0.9);
@@ -169,7 +174,7 @@ const ClearButton = styled.button`
 
 const SubmitButton = styled.button`
   font-size: 15px;
-  background: #daa520;
+  background: goldenrod;
 
   color: white;
   border-radius: 5px;
@@ -179,8 +184,8 @@ const SubmitButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #eec64f;
-  }
+      background: darkgoldenrod;
+    }
 
   &:active {
     transform: scale(0.9);

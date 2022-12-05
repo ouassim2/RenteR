@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import styled from "styled-components"
 import Bot from "./Bot"
+import LoadingSpinner from "./LoadingSpinner"
 
 const RentMe = () => {
   // const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID
@@ -15,7 +16,7 @@ const RentMe = () => {
   const [rentalChoice, setRentalChoice] = useState(null);
   const [showChat, setShowChat] = useState(false);
   
-  console.log("showChat", showChat)
+  // console.log("showChat", showChat)
 
   useEffect(() => {
     const fetchEmail = async () => {
@@ -78,9 +79,7 @@ const RentMe = () => {
   return (
     <>
       <Div>
-        {!emailInfo ? (
-          <h1>Loading!</h1>
-        ) : (
+        {!emailInfo ? <Loading> <LoadingSpinner fontSize="120"/> </Loading> : 
           <>
             <h1>You are renting !</h1>
             <Wrapper>
@@ -114,8 +113,8 @@ const RentMe = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
             <MiniWrapper>
               <div>
-                <label> <span>Rent for:</span> 1 hour</label>
-                <input required value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
+                <label>  <span>Rent for:</span> 1 hour</label>
+                <input autoFocus required value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
               </div>
               <div>
                 <label> <span>Rent for:</span> 1 day</label>
@@ -125,15 +124,24 @@ const RentMe = () => {
 
              <p>{isAuthenticated ? <StyledButton> Rent ! </StyledButton> : null} </p> 
             </form>
+            
+            <Bot/>
           </>
-        )}
+        }
       </Div>
-      {!showChat ? null :
-      <Bot/>
-      }
+      {/* {!showChat ? <h1>Chat Loading!</h1> :
+      } */}
     </>
   )
 }
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+  height: 80vh;
+`;
+
 const MiniWrapper = styled.div`
   display: grid;
   grid-template-columns: 250px 250px;

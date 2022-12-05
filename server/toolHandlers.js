@@ -140,6 +140,23 @@ const getToolsByProfession = async(req, res) => {
   }
 }
 
+const getToolsByBrand = async (req, res) => {
+  
+  try {
+    
+    const db = await callDb()
+
+    const result = await db.collection("Tools3").find({brand : req.params.brand}).toArray()
+    
+    res.status(200).json({status: 200, message: `here are all the tools for the profession :${req.params.profession}`, result })
+
+
+  } catch (error) {
+    console.log("  ~ error", error)
+    
+  }
+}
+
 //todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
 const postTools = async (req, res) => {
   const payLoad = req.body;
@@ -258,6 +275,7 @@ module.exports = {
   getToolById,
   getToolsByUsername,
   getToolsByProfession,
+  getToolsByBrand,
   postTools,
   getUserProfile,
   editUserProfile,

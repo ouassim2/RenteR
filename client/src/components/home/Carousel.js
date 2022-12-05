@@ -49,7 +49,6 @@ const slides = [
 ]
 
 
-
 const initialState = {
   slideIndex: 1,
 }
@@ -244,7 +243,9 @@ margin-right: 880px;
 const Slides = styled.div`
 cursor: pointer;
 display: grid;
-   .slide {
+overflow: hidden;
+
+.slide {
     grid-area: 2 / 2;
   }
 
@@ -327,6 +328,7 @@ body {
  }
  // size and opacity of each slide
 .slideContent {
+
   color: white;
   margin-top: 30px;
   width: 15vw;
@@ -352,6 +354,7 @@ body {
 
 // creates the 3d dimension (the z axe basically) for the font
 .slideContentInner {
+  
   transform-style: preserve-3d;
   // creates the 3d dimension (the z axe basicly)
   transform: translateZ(2rem);
@@ -370,6 +373,7 @@ body {
 
   .slideSubtitle::before {
     content: "— ";
+    
   }
 
   .slideDescription {
@@ -381,6 +385,7 @@ body {
 
 // to remove or add background (bghome)
 .slideBackground {
+  
   margin-top: 50px;
   position: fixed;
   top: 0;
@@ -399,6 +404,7 @@ body {
 
 // makes the image look at your cursor has the active slide
 .slide[data-active] {
+  
   z-index: 2;
   pointer-events: auto;
 
@@ -412,6 +418,7 @@ body {
   }
 
   .slideContent {
+    
     --x: calc(var(--px) - 0.5);
     --y: calc(var(--py) - 0.5);
     opacity: 1;

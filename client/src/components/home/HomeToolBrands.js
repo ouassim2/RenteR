@@ -13,46 +13,38 @@ import ryobilogo from "../../assets/ryobilogo.png"
 import troybiltlogo from "../../assets/troybiltlogo.png"
 import tomohawklogo from "../../assets/tomohawklogo.png"
 import yardworkslogo from "../../assets/yardworkslogo.png"
+import { Link } from "react-router-dom"
 
 const HomeToolBrands = () => {
 
+  const brands = [
+    {id:"Dewalt123r3", brand:"Dewalt", logo: dewaltlogo, video: dewaltvid},
+    {id:"Milwaukeer33rr", brand:"Milwaukee", logo: milwaukeelogo, video: milwaukeevid},
+    {id:"Ryobi13r13r", brand:"Ryobi", logo: ryobilogo, video: ryobivid},
+    {id:"Troybilt13r31r", brand:"Troybilt", logo:troybiltlogo, video: troybiltvid},
+    {id:"Tomahawksd1r", brand:"Tomahawk", logo:tomohawklogo, video: tomohawkvid},
+    {id:"Yardworks31rqs", brand:"Yardworks", logo:yardworkslogo, video: yardworksvid},
+  ]
 
   return (
     <Wrapper>
-    <h1>Rent by Brand</h1>
+      <h1>Rent by Brand</h1>
 
-    <MiniWrapper>
-      <div onClick={() => console.log("yehh siiir!")}>
-        <Logo src={dewaltlogo}/>
-        <Video src={dewaltvid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
+      <MiniWrapper>
+      {brands.map(({id, brand ,logo ,video }) => {
+        return(
+        <Link key={id} to={`/rent-tool/brand/${brand}`}>
+          <div> 
+            <Logo  src={logo}/>
+            <Video src={video} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
+          </div>
+        </Link>
+        )
+      })
+      }
+      </MiniWrapper>
 
-      <div>
-        <LogoMilwaukee src={milwaukeelogo}/>
-        <Video src={milwaukeevid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
-
-      <div>
-        <LogoRyobi src={ryobilogo}/>
-        <Video src={ryobivid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
-
-      <div>
-        <LogoTroyBilt src={troybiltlogo}/>
-        <Video src={troybiltvid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
-
-      <div>
-        <LogoTomohawk src={tomohawklogo}/>
-        <Video src={tomohawkvid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
-
-      <div>
-        <LogoYardWorks src={yardworkslogo}/>
-        <Video src={yardworksvid} muted onMouseEnter={e => e.target.play()} onMouseOut={e => e.target.pause()}/>
-      </div>
-
-    </MiniWrapper>
+    
     </Wrapper>
   )
 }
@@ -60,17 +52,18 @@ const Wrapper = styled.div`
 margin-top: 25px;
 `
 const MiniWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
 margin-top: 25px;
-margin-left:130px ;
 height: 500px;
 width: 1000px;
-flex-wrap: wrap;
-display: flex;
-/* justify-content: center; */
-/* align-items: center; */
+margin-left:265px ;
+
 div{
     z-index: 10;
-    background-color: green;
+    background-color: black;
     width: 300px;
     height: 200px;
     margin-right: 20px;
@@ -79,11 +72,18 @@ div{
 `
 const Logo = styled.img`
     /* z-index: 9; */
+    margin-top: 20px;
     margin-left:  50px;
     position: absolute;
+
     /* left: 150px; */
     width: 200px;
     opacity: 0.8;
+
+`
+const Video = styled.video`
+    width: 300px;
+    height: 200px;
 
 `
 const LogoMilwaukee = styled.img`
@@ -134,9 +134,5 @@ margin-top: 55px;
     width: 150px;
     opacity: 0.8;
 `
-const Video = styled.video`
-    width: 300px;
-    height: 200px;
 
-`
 export default HomeToolBrands

@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { CgProfile } from "react-icons/cg"
 import bg from "../assets/bgnone.png"
 import { useEffect, useState } from "react"
+import LoadingSpinner from "./LoadingSpinner"
 
 const MyProfile = () => {
   const { user, isAuthenticated } = useAuth0()
@@ -35,7 +36,7 @@ const MyProfile = () => {
 
   return (
     <ProfileWrapper>
-        {!profileInfo || !user ? <h1>Loading...</h1> : 
+        {!profileInfo || !user ? <Loading> <LoadingSpinner fontSize="120"/> </Loading> : 
         <>
         {profileInfo?.status === 200 && profileInfo?.userInfo?.profilePicture === undefined ? // if the user has not uploaded a picture go check auth0 github info instead
 
@@ -69,26 +70,33 @@ const MyProfile = () => {
       </NavLink>
 
       <NavLink to="/edit-profil">
-        <button>Edit Profil</button>
+        <button>Edit Profile</button>
       </NavLink>
       </>
         }
     </ProfileWrapper>
   )
 }
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+  height: 80vh;
+`;
 
 const ProfileWrapper = styled.div`
   width: 100%;
   /* height: 700px; */
   /* border-right: 1px solid black; */
+  margin-bottom: 25px;
 
   div {
     img {
       position: absolute;
-      top: 380px;
+      top: 360px;
       border: 3px solid white;
       width: 200px;
-      border-radius: 50%;
+      border-radius: 10%;
       margin: 15px;
     }
   }
@@ -96,15 +104,18 @@ const ProfileWrapper = styled.div`
   button {
     height: 40px;
     padding: 0px 10px;
-    /* margin-left: 890px; */
-    margin-top: 85px;
-    margin-left: 65px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 100px;
     font-size: large;
     border-radius: 15px;
     border: none;
-    background-color: green;
+    background-color: black;
     color: white;
     cursor: pointer;
+      &:hover {
+      background: darkgoldenrod;
+    }
   }
 `
 const Div1 = styled.div`

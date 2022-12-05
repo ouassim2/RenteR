@@ -4,6 +4,7 @@ import { ToolContext } from '../ToolContext';
 import HomeAllTools from './HomeAllTools';
 import Carousel from './Carousel';
 import HomeToolBrands from './HomeToolBrands';
+import LoadingSpinner from '../LoadingSpinner';
 
 const Home = () => {
   //Todo why does this component not rerendering when i click on home but before 
@@ -15,7 +16,7 @@ const Home = () => {
     <Wrapper>
       <Carousel/>
 
-     {!homeToolList ? <h1>Loading...</h1>:
+     {!homeToolList ? <Loading> <LoadingSpinner fontSize="120"/> </Loading>:
       <>
       <HomeToolBrands/>
       <HomeAllTools/>
@@ -30,5 +31,10 @@ h1{
   text-align: center;
 }
 `
-
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+  height: 80vh;
+`;
 export default Home

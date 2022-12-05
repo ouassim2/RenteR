@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ToolContext } from "./ToolContext";
+import LoadingSpinner from "./LoadingSpinner";
 
 // search through product inventory. state/props passed from app
 const SearchBar = () => {
@@ -47,7 +48,7 @@ const SearchBar = () => {
       <form onSubmit={(e) => handlesubmit(e)}>
 
         {!homeToolList ? (
-           <h1>Loading...</h1>
+           <Loading> <LoadingSpinner fontSize="30"/> </Loading>
          ) : ( 
           <>
             <Input
@@ -107,6 +108,13 @@ const SearchBar = () => {
     </Wrapper>
   );
 };
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+
+  font-size: 15px;
+`;
 
 const Wrapper = styled.div`
 width: 280px;
@@ -185,6 +193,11 @@ const Ok = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  font-size: 1em;
+  :hover {
+    color: darkgray;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const LinkItem = styled(NavLink)`

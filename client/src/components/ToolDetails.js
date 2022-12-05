@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from "react";
 import { ToolContext } from "./ToolContext";
-// import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./LoadingSpinner";
 import { useAuth0 } from "@auth0/auth0-react"
 
 
@@ -39,7 +39,7 @@ useEffect(() => {
 //// <Loading>//   <LoadingSpinner />// </Loading>
   return (
     <Div>
-      {!toolDetails ? <h1>Loading!</h1> : 
+      {!toolDetails ? <Loading> <LoadingSpinner fontSize="120"/> </Loading> : 
         <Wrapper>
           <div>
             <img src={toolDetails.toolImageSrc} alt={toolDetails.toolName} />
@@ -112,11 +112,11 @@ const Wrapper = styled.div`
 div{
   
   img {
-    height: 500px;
-    width: 500px;
-    /* height: fit-content;
-    width: fit-content;
-    transform: scale(0.5); */
+     height: 500px;
+    width: 500px; 
+     /* height: fit-content;
+    width: fit-content; */
+    /* transform: scale(0.5);  */
 
     border-radius: 8px;
     margin-bottom: 20px;

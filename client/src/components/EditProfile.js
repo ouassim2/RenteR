@@ -83,7 +83,7 @@ justify-content: center;
 const Wrapper = styled.div`
   margin-top: 32px;
   width: 380px;
-  height: 450px;
+  height: 350px;
   background: white;
   padding: 24px;
   border-radius: 16px;
@@ -128,7 +128,7 @@ const MiniWrapper = styled.div`
 
 const ClearButton = styled.button`
   font-size: 15px;
-  background-color: #023f05;
+  background-color: goldenrod;
 
   color: white;
   border-radius: 5px;
@@ -138,7 +138,7 @@ const ClearButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #326841;
+    background-color: darkgoldenrod;
   }
 
   &:active {
@@ -148,7 +148,7 @@ const ClearButton = styled.button`
 
 const SubmitButton = styled.button`
   font-size: 15px;
-  background: #daa520;
+  background: goldenrod;
 
   color: white;
   border-radius: 5px;
@@ -158,7 +158,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #eec64f;
+    background-color: darkgoldenrod;
   }
 
   &:active {

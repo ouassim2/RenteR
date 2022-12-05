@@ -10,26 +10,11 @@ const Navbar = () => {
       <nav>
         <ul>
           <LeftColumn>
-            <LinkItem to="/">
-              {" "}
-              <FaTools size="20px"/>
-            </LinkItem>
-            <LinkItem to="/">
-              {" "}
-              <li>Home</li>{" "}
-            </LinkItem>
-            <LinkItem to="About">
-              {" "}
-              <li>About</li>{" "}
-            </LinkItem>
-            <LinkItem to="Services">
-              {" "}
-              <li>Services</li>{" "}
-            </LinkItem>
-            <LinkItem to="Contact">
-              {" "}
-              <li>Contact</li>{" "}
-            </LinkItem>
+            <LinkItem to="/"> <div><FaTools size="23px"/></div> <p><span>R</span>ent<span>R</span></p> </LinkItem>
+            <LinkItem to="/"><li>Home</li></LinkItem>
+            {/* <LinkItem to="About"><li>About</li></LinkItem>
+            <LinkItem to="Services"><li>Services</li></LinkItem>
+            <LinkItem to="Contact"><li>Contact</li></LinkItem> */}
           </LeftColumn>
 
           <RightColumn>
@@ -61,7 +46,7 @@ const LinkItem = styled(NavLink)`
   text-decoration: none;
   color: white;
   padding-right: 20px;
-  padding-left: 10px;
+  padding-left: 15px;
   
   &.active {
     li {
@@ -72,6 +57,22 @@ const LinkItem = styled(NavLink)`
   :hover {
     color: darkgray;
     transition: 0.3s ease-in-out;
+  }
+
+  p{
+    font-size: 1em; 
+    span{   
+      color: goldenrod;
+      /* font-weight: 500; */
+      :hover {
+      color: darkgoldenrod;
+      transition: 0.3s ease-in-out;
+      }
+    }
+  }
+  div{
+    margin-top: 2px;
+    margin-left: 10px;
   }
 `
 
@@ -96,7 +97,7 @@ const RightColumn = styled.div`
   align-items: center;
   
   li {
-    margin-right: 35px;
+    /* margin-right: 35px; */
   }
 `
 const LeftColumn = styled.div`
