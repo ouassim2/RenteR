@@ -59,8 +59,8 @@ useEffect(() => {
               {toolDetails.toolCategorie}
             </p>
             <p>
-              <strong>ID: </strong>
-              {toolDetails._id}
+              <strong>Brand: </strong>
+              {toolDetails.brand}
             </p>
 
             {isAuthenticated ? 

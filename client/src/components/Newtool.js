@@ -43,7 +43,14 @@ const Newtool = () => {
     <BodyWrapper>
     <Wrapper>
           <h1>New Tool</h1>
+
           <form onSubmit={(e)=> handleSubmit(e)}>
+
+            <MiniWrapper>
+                <label>Email :</label>
+                <input onChange={(e)=> setFormData({...formData, email: e.target.value}) } type='email' required />
+            </MiniWrapper>
+
             <MiniWrapper>
               <label>Tool Categorie:</label>
               <select required onChange={(e) => setFormData({ ...formData, toolCategorie : e.target.value })}>
@@ -55,7 +62,6 @@ const Newtool = () => {
                 <option value="electriciantool">Electrician tool</option>
                 <option value="constructiontool">Construction tool</option>
                 <option value="wintertool">Winter tool</option>
-               
               </select>
 
             </MiniWrapper>
@@ -109,7 +115,7 @@ const BodyWrapper = styled.div`
 const Wrapper = styled.div`
   margin-top: 32px;
   width: 380px;
-  height: 450px;
+  height: 500px;
   background: white;
   padding: 24px;
   border-radius: 16px;
