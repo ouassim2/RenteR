@@ -18,7 +18,7 @@ const navigate = useNavigate();
         <Wrapper onMouseEnter={()=>{setIsToggled(!isToggled)}} onMouseLeave={()=>{setIsToggled(!isToggled)}}>
             <UserProfilePic>
 
-                {user && user.picture ? <img src={user.picture} alt="profile-picture" onClick={(()=>{navigate(`/profile/${user.nickname}`)})}/> 
+                {user && user.picture ? <img src={user.picture} alt="your-avatar" onClick={(()=>{navigate(`/profile/${user.nickname}`)})}/> 
                 :
                 <CgProfile cursor="pointer" size="35" color="white" />
                 }
@@ -26,9 +26,9 @@ const navigate = useNavigate();
 
             </UserProfilePic>
 
-            {!isToggled ? null :
+            {!isToggled ? null : 
             <DropDownMenu >
-                {!user ? null :
+                {!isAuthenticated ? null :
                 <>
                 <StyledLi onClick={(()=>{navigate(`/profile/${user.nickname}`)})}>Profile</StyledLi>
                 </>
@@ -52,40 +52,29 @@ img{
     border-radius: 50%;
     cursor: pointer;
     
-}
-`
+  }
+  `
 const UserProfilePic = styled.div`
 width: 70px;
 
 `
 
 const DropDownMenu = styled.ul`
-/* background-color: beige; */
-/* display: flex; */
 flex-direction: column;
-/* margin-top: 10px; */
-/* width: 400px; */
 height: 0px; // check
-/* padding: 0px 20px; */
-/* -webkit-box-shadow: 5px 5px 15px 5px #000000;
-box-shadow: 5px 5px 15px 5px #000000; */
 `
 
 const StyledLi = styled.li`
   width: 70px;
   color: white;
   padding: 10px 5px;
-  /* border-radius: 5px; */
   cursor: pointer;
   background-color: black;
-  /* border-radius: 15px; */
-  z-index: 2;
-  /* padding-right: 0px; */
   :hover {
     color: darkgray;
     transition: 0.3s ease-in-out;
   }
-`
+  `
 
 
 export default Navprofile;

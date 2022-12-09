@@ -10,7 +10,7 @@ const MyProfile = () => {
   const { user, isAuthenticated } = useAuth0()
   const [profileInfo, setProfileInfo] = useState(null)
 
-    console.log("profileInfo", profileInfo)
+    // console.log("profileInfo", profileInfo)
      
     useEffect(() => {
         if (isAuthenticated) {
@@ -21,7 +21,7 @@ const MyProfile = () => {
           const fetchInfo = await fetch(`/api/get-user-profile/${user.nickname}`)
           const parsedInfo = await fetchInfo.json()
 
-          console.log("  ~ parsedInfo", parsedInfo)
+          // console.log("  ~ parsedInfo", parsedInfo)
 
           setProfileInfo(parsedInfo)
 
@@ -86,8 +86,6 @@ const Loading = styled.div`
 
 const ProfileWrapper = styled.div`
   width: 100%;
-  /* height: 700px; */
-  /* border-right: 1px solid black; */
   margin-bottom: 25px;
 
   div {
@@ -119,7 +117,6 @@ const ProfileWrapper = styled.div`
   }
 `
 const Div1 = styled.div`
-  /* margin-top: 20px; */
   top: 500px;
   position: absolute;
   margin-left: 220px;

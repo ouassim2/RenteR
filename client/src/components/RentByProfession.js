@@ -18,17 +18,15 @@ const RentByProfession = () => {
       try {
         const data = await fetch(`/api/get-tools/profession/${id}`)
         const parsedData = await data.json()
-        // console.log("  ~ parsedData", parsedData.result)
 
         setToolsByProfession(parsedData.result)
-        // console.log(parsedData.result)
       } catch (error) {
         console.log("  ~ error", error)
       }
     }
 
     fetchToolsByProfession()
-  }, [])
+  }, [id])
 
   return (
     <>
@@ -46,7 +44,7 @@ const RentByProfession = () => {
                     <div><strong>1 Day: </strong>{priceOneDay} </div>
 
                     {isAuthenticated ? 
-                      <Button onClick={e =>( e.preventDefault(), navigate(`/rent-tool/${_id}`) )}>Rent!</Button>
+                      <Button onClick={e =>[ e.preventDefault(), navigate(`/rent-tool/${_id}`)] }>Rent!</Button>
                       : null
                     }
                   </ListingCard>
@@ -72,13 +70,10 @@ const ListingCard = styled.div`
  z-index: 10;
   border-radius: 15px;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
-  margin-top: 25px;
-  /* height: 300px; */
+  /* margin-top: 25px; */
   font-size: larger;  
   padding: 0px 20px;
-  /* box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); */
 
   :hover{
       background-color: #AD9F90;
@@ -95,11 +90,13 @@ const ListingCard = styled.div`
 const ToolImage = styled.img`
 z-index: 10;
   width: 100px;
+  height: 120px;
+  object-fit: contain;
   margin-left: 25px;
   margin-right: 25px;
 `
 const Button = styled.button`
-    z-index: 10;
+    z-index: 5;
     cursor: pointer;
     height: 50px;
     width:105px;

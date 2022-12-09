@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools, getToolById, getToolsByUsername, getToolsByProfession, getToolsByBrand, postTools,getUserProfile, editUserProfile } = require("./toolHandlers")
+const { getTools, getToolById, getUserToolListings, getToolsByProfession, getToolsByBrand, postTools,getUserProfile, editUserProfile } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -26,7 +26,7 @@ express()
   .get("/api/get-tools", getTools) // get all the tools available for rent!
   .get("/api/get-tool/:id", getToolById) // get a single tool by id
 
-  .get("/api/get-tools/:username", getToolsByUsername) // get all the tools for that particular username
+  .get("/api/get-user-tool-listings/:username", getUserToolListings) // get all the tools for that particular username
   .get("/api/get-tools/profession/:profession", getToolsByProfession) // get all the tools for that particular profession
   .get("/api/get-tools/brand/:brand", getToolsByBrand) // get all the tools for that particular profession
   .post("/api/post-tools", postTools) // post a single tool to Db

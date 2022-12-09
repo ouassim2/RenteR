@@ -138,18 +138,15 @@ width: 80px;
 background-color: blue;
 border-radius: 5px;
 z-index: 10;
-/* transform: scale(0.90); */
 `
 const StyledUl = styled.ul`
     background-color: beige;
     display: flex;
     flex-direction: column;
   margin-top: 10px;
-  /* width: 400px; */
   height: 0; // check
   padding: 0px 20px;
-  /* -webkit-box-shadow: 5px 5px 15px 5px #000000;
-  box-shadow: 5px 5px 15px 5px #000000; */
+
 
   p {
     color: white;
@@ -160,9 +157,6 @@ const StyledUl = styled.ul`
     }
   }
 
-  span {
-    /* font-weight: bold; */
-  } 
 `;
 
 const StyledLi = styled.li`
@@ -173,7 +167,6 @@ const StyledLi = styled.li`
 
   cursor: pointer;
   background-color: #d0b180;
-  /* border-radius: 15px; */
   z-index: 2;
 
   :hover{

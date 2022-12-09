@@ -1,7 +1,6 @@
 import { ImSpinner10 } from "react-icons/im";
 import styled from "styled-components";
 
-
 // component that creates & displays the loading page image
 const LoadingSpinner = ({ fontSize }) => {
 

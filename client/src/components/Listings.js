@@ -18,7 +18,7 @@ const Listings = () => {
 
         try {
           // getting all the tools from ouassim2 db
-          const fetchTools = await fetch(`/api/get-tools/${user.nickname}`)
+          const fetchTools = await fetch(`/api/get-user-tool-listings/${user.nickname}`)
           const parsedTools = await fetchTools.json()
 
           // console.log("  ~ parsedTools", parsedTools)

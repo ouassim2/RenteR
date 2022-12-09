@@ -4,8 +4,6 @@ import {  useContext  } from "react"
 import { ToolContext } from '../ToolContext';
 import { useAuth0 } from "@auth0/auth0-react"
 
-
-
 const HomeAllTools = () => {
   const { isAuthenticated } = useAuth0()
 
@@ -28,7 +26,7 @@ const HomeAllTools = () => {
                     <div><strong>1 Day: </strong>{priceOneDay} </div>
 
                   {isAuthenticated ? 
-                    <Button onClick={(e)=>(e.preventDefault(), navigate(`/rent-tool/${_id}`))}>Rent!</Button>
+                    <Button onClick={(e)=>[e.preventDefault(), navigate(`/rent-tool/${_id}`)]}>Rent!</Button>
                     : null
                   }
                   </ListingCard>
@@ -57,20 +55,16 @@ const ListingCard = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
-  height: 300px;
+  height: 180px;
   font-size: larger;  
 padding: 0px 75px;
-  /* box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); */
     :hover{
       background-color: #AD9F90;
 
     }
-    /* &:active {
-    transform: scale(0.95);
-  } */
+
       div {
         z-index: 10;
-        /* margin-right: 80px; */
     width:200px;
 
       }
@@ -78,8 +72,10 @@ padding: 0px 75px;
   `
 
 const ToolImage = styled.img`
-z-index: 10;
-  width: 100px;
+  z-index: 10;
+  width: 150px;
+  height: 180px;
+  object-fit: contain;
   margin-left: 25px;
   margin-right: 25px;
 `

@@ -77,23 +77,7 @@ const getToolById = async (req, res) => {
   // client.close()
 }
 
-const getToolsByUsername = async (req, res) => {
-  // const { username } = req.params
-  // console.log("  ~ req.params", req.params)
-  // console.log("  ~ username", username)
-  
-  // const objectToDb = {
-  //   ...req.params,
-  //   // _id: "",
-  //   email: "",
-
-  //   toolCategorie:"" ,
-  //   toolName : ""  ,
-  //   toolId :  "" ,
-  //   priceOneHour:  "" ,
-  //   priceOneDay:  "" ,
-  //   toolImageSrc:  ""
-  // }
+const getUserToolListings = async (req, res) => {
 
   try {
     const db = await callDb()
@@ -138,6 +122,8 @@ const getToolsByProfession = async(req, res) => {
     console.log("  ~ error", error)
     
   }
+
+  client.close()
 }
 
 const getToolsByBrand = async (req, res) => {
@@ -155,9 +141,10 @@ const getToolsByBrand = async (req, res) => {
     console.log("  ~ error", error)
     
   }
+
+  client.close()
 }
 
-//todo receive toolinfo from newtool component and patch the username:"ouassim2" object with the data
 const postTools = async (req, res) => {
   const payLoad = req.body;
   console.log("  ~ payLoad", payLoad)
@@ -166,18 +153,9 @@ const postTools = async (req, res) => {
   const objectToDb = {
     ...payLoad,
     _id: uuidv4(),
-    // toolId :  "" , // maybee add uuid if duplicate keys...
-
-    // email: "",
-
-    // toolCategorie:"" ,
-    // toolName : ""  ,
-    // priceOneHour:  "" ,
-    // priceOneDay:  "" ,
-    // toolImageSrc:  ""
   }
   
-  console.log("  ~ objectToDb", objectToDb)
+  // console.log("  ~ objectToDb", objectToDb)
   
   try{
 
@@ -186,16 +164,6 @@ const postTools = async (req, res) => {
   const newUser = await db.collection("Tools3").insertOne(objectToDb)
   
   res.status(200).json({status: 200, message: "received!", objectToDb})
-
-
-  // if(!newUser){
-    // console.log("no users with that username found in db")
-
-    // const result = await db.collection("Tools3").insertOne(objectToDb)
-    // console.log("  ~ result", result)
-  // }else{
-
-  // }
 
 
   }catch(err){
@@ -225,9 +193,6 @@ const getUserProfile = async (req, res) => {
 };
 
 const editUserProfile = async(req, res) => {
-  // will need to check if name profilpic and bg pic keys exist
-    // in the database if yes edit them if not create them
-    // so we patch them here (add if they dont exist) and fetch them in myprofil to append them
   const {username} = req.params
   // console.log("username", username)
 
@@ -273,7 +238,7 @@ const editUserProfile = async(req, res) => {
 module.exports = {
   getTools,
   getToolById,
-  getToolsByUsername,
+  getUserToolListings,
   getToolsByProfession,
   getToolsByBrand,
   postTools,

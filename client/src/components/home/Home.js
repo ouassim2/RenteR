@@ -7,8 +7,6 @@ import HomeToolBrands from './HomeToolBrands';
 import LoadingSpinner from '../LoadingSpinner';
 
 const Home = () => {
-  //Todo why does this component not rerendering when i click on home but before 
-  // with no context / just state and fetch it was rerendering ?
   const {homeToolList} = useContext(ToolContext)
 
 

@@ -6,42 +6,36 @@ import { useNavigate } from "react-router-dom"
 const slides = [
   {
     title: "Mechanic Tools",
-    // subtitle: "Peru",
     toolCategorie: "mechanictool",
     image:
       "https://media.istockphoto.com/id/1284285153/photo/auto-mechanic-working-on-car-engine-in-mechanics-garage-repair-service-authentic-close-up-shot.jpg?b=1&s=170667a&w=0&k=20&c=hTcQR45ysPuDMBhdiYMmhrLasEZoeVPLKIWJQOAIf1Y=",
   },
   {
     title: "Construction Tools",
-    // subtitle: "France",
     toolCategorie: "constructiontool",
     image:
       "https://constructeurtravaux.fr/wp-content/uploads/2019/05/construction-maison-1.jpg",
   },
   {
     title: "Electrician Tools",
-    // subtitle: "Australia",
     toolCategorie: "electriciantool",
     image:
       "https://www.hoffmannbros.com/wp-content/uploads/2022/07/Electrical-Services-Hoffmann-Brothers.jpg",
   },
   {
     title: "Garden Tools",
-    // subtitle: "Australia",
     toolCategorie: "gardentool",
     image:
       "https://www.cnet.com/a/img/resize/cea01bb01a6e560a38cd1d5ecbe1c39173a85638/hub/2021/03/24/4077bd78-be3c-4a52-b81d-f51189cf4e5c/ryobi-mower-1.jpg?auto=webp&fit=crop&height=675&width=1200",
   },
   {
     title: "Winter Tools",
-    // subtitle: "Australia",
     toolCategorie: "wintertool",
     image:
       "https://www.thespruce.com/thmb/jVIiSCyThCmOIgcq6qXuQLNaVco=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ariens_28in-Snow-Blower_02-65520a5673cd4d5099903bac523d90b3.jpg",
   },
   {
     title: "Plumbing Tools",
-    // subtitle: "Australia",
     toolCategorie: "plumbingtool",
     image:
       "https://suburbanplumbingoc.com/wp-content/uploads/2020/06/How-Your-Home-Plumbing-System-Works.jpg",
@@ -178,17 +172,12 @@ const Carousel = () => {
 const PrevButton = styled.button`
 margin-top: 100px;
 margin-left: 880px;
-    /* appearance: none; */
+cursor: pointer;
     background: transparent;
     color: white;
     font-size: 5em;
     border: none;
-    /* color: white; */
     position: absolute;
-    /* font-size: 5rem; */
-    /* width: 5rem; */
-    /* height: 5rem; */
-    /* top: 30%; */
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
@@ -211,17 +200,12 @@ margin-left: 880px;
 const NextButton = styled.button`
 margin-top: 100px;
 margin-right: 880px;
-    /* appearance: none; */
+cursor: pointer;
     background: transparent;
     color: white;
     font-size: 5em;
     border: none;
-    /* color: white; */
     position: absolute;
-    /* font-size: 5rem; */
-    /* width: 5rem; */
-    /* height: 5rem; */
-    /* top: 30%; */
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
@@ -241,88 +225,18 @@ margin-right: 880px;
     }
 `
 const Slides = styled.div`
-cursor: pointer;
 display: grid;
 overflow: hidden;
 
 .slide {
     grid-area: 2 / 2;
+cursor: pointer;
   }
 
-   /* button { */
-    /* margin-right: 450px; */
-    /* appearance: none; */
-    /* background: transparent; */
-    /* border: none; */
-    /* color: white; */
-    /* position: absolute; */
-    /* font-size: 5rem; */
-    /* width: 5rem; */
-    /* height: 5rem; */
-    /* top: 30%; */
-    /* transition: opacity 0.3s;
-    opacity: 0.7;
-    z-index: 5; */
-
-    /* &:hover {
-      opacity: 1;
-    } */
-
-    /* &:focus {
-      outline: none;
-    } */
-
-    /* &:first-child {
-      left: -50%;
-    } */
-    /* &:last-child {
-      right: -50%;
-    } */
-  /* } */
 `;
 
 const Wrapper = styled.div`
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-  position: relative;
-} */
-/* 
-html,
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 3vmin;
-}
 
-html {
-  background: #151515;
-  color: #fff;
-  overflow: hidden;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-/*
- .slide { 
-  //transform-style: preserve-3d;
-  // border: solid 1px red;
-
-  // &[data-active] {
-  //   .slideContent > * {
-  //     transform: none;
-  //     opacity: 1;
-  //   }
-  // }
- } 
- */
  h1{
   z-index: 10;
  }

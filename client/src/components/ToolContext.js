@@ -29,8 +29,6 @@ const ToolProvider = ({ children }) => {
   const [toolDetails, setToolDetails] = useState(null)
 
   
-
-  
   return (
     <ToolContext.Provider value={{ homeToolList, setHomeToolList, toolDetails, setToolDetails,  }}>
       {children}

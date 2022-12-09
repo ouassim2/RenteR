@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from "react";
 import { ToolContext } from "./ToolContext";
@@ -15,7 +15,6 @@ const ToolDetails = () => {
   
   const { toolDetails, setToolDetails } = useContext(ToolContext);
   // console.log("  ~ toolDetails", toolDetails)
-  // const navigate = useNavigate();
 
 useEffect(() => {
   
@@ -35,8 +34,8 @@ useEffect(() => {
   
   fetchToolDetails()
 
-}, [id]);
-//// <Loading>//   <LoadingSpinner />// </Loading>
+}, [id, setToolDetails]);
+
   return (
     <Div>
       {!toolDetails ? <Loading> <LoadingSpinner fontSize="120"/> </Loading> : 
@@ -76,22 +75,7 @@ useEffect(() => {
 };
 
 const Div = styled.div`
-  /* height: 100vh; */
-  /* font-family: Arial, Helvetica, sans-serif; */
-  /* background: #f0ead6; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* z-index: 1; */
-  /* h1 { */
-    /* color: #242929;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 25px; */
-  /* } */
-  /* height: 100vh; */
+ 
 `;
 
 const Loading = styled.div`
@@ -100,31 +84,21 @@ const Loading = styled.div`
   padding-top: 20vh;
 `;
 const Wrapper = styled.div`
-  /* z-index: 1; */
   height: 100vh;
-
-  /* background: #f0ead6; */
-
   display: grid;
   grid-template-columns: 500px 500px;
   justify-content: center;
   align-items: center;
+
 div{
   
   img {
-     height: 500px;
+    height: 700px;
     width: 500px; 
-     /* height: fit-content;
-    width: fit-content; */
-    /* transform: scale(0.5);  */
+    object-fit: contain;
 
     border-radius: 8px;
     margin-bottom: 20px;
-    /* margin-top: 50px; */
-    /* transform: scale(0.8); */
-    /* box-shadow: 0 0 8px 8px white inset; */
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     }
   }
 
@@ -154,11 +128,6 @@ const StyledButton = styled.button`
   height: 3rem;
   letter-spacing: .05em;
   width: 10rem;
-
-
-  /* &:disabled {
-    background-color: grey;
-  } */
 
   &:hover {
     cursor: pointer;

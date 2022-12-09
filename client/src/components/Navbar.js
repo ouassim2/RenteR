@@ -63,7 +63,6 @@ const LinkItem = styled(NavLink)`
     font-size: 1em; 
     span{   
       color: goldenrod;
-      /* font-weight: 500; */
       :hover {
       color: darkgoldenrod;
       transition: 0.3s ease-in-out;
@@ -76,36 +75,16 @@ const LinkItem = styled(NavLink)`
   }
 `
 
-// const Logo = styled.img`
-//   margin-left: 20px;
-//   width: 40px;
-//   color: white;
-// `
-// const CartLogo = styled.img`
-//   width: 55px;
-//   height: 50px;
-//   cursor: pointer;
-//   margin-right: 15px;
-//   &:active {
-//     transform: scale(0.8);
-//   }
-// `;
-
 const RightColumn = styled.div`
   z-index: 10;
   display: flex;
   align-items: center;
   
-  li {
-    /* margin-right: 35px; */
-  }
 `
 const LeftColumn = styled.div`
   z-index: 10;
   display: flex;
   align-items: center;
-
-  /* height: 50px; */
 `
 
 export default Navbar

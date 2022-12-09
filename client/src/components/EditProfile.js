@@ -4,14 +4,9 @@ import FileBase64 from "react-file-base64"
 import { useAuth0 } from "@auth0/auth0-react"
 
 const EditProfile = () => {
-    // will need to check if name profilpic and bg pic keys exist
-    // in the database if yes edit them if not create them
-    // so we patch them here (add if they dont exist) and fetch them in myprofil to append them
     const {user, isAuthenticated} = useAuth0()
-    // console.log(user.nickname)
 
     const [formData, setFormData] = useState({})
-    console.log("  ~ formData", formData)
     
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -76,9 +71,7 @@ const BodyWrapper = styled.div`
 height: 100vh;
 display: flex;
 justify-content: center;
-/* background-color: #f0ead6; */
 `;
-
 
 const Wrapper = styled.div`
   margin-top: 32px;
