@@ -103,8 +103,8 @@ const RentMe = () => {
                   {emailInfo.toolCategorie}
                 </p>
                 <p>
-                  <strong>ID: </strong>
-                  {emailInfo._id}
+                  <strong>Brand: </strong>
+                  {emailInfo.brand}
                 </p>
               </ItemInfo>
             </Wrapper>
