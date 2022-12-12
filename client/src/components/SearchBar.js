@@ -179,6 +179,11 @@ const Input = styled.input`
   width: 200px;
   outline: none;
   margin-top: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 10px;
+
 `;
 
 const Ok = styled.button`

@@ -10,6 +10,7 @@ import RentMe from "./RentMe";
 import RentByProfession from "./RentByProfession";
 import EditProfile from './EditProfile';
 import RentByBrand from "./RentByBrand";
+// import NavBar from "./Test.js"
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
         <Router>
           <GlobalStyles/>
           <Navbar/>
+          {/* <NavBar/> */}
 
             <Routes>
               <Route path="/" element={<Home />} />
@@ -28,7 +30,6 @@ const App = () => {
               <Route path="/rent-tool/:id" element={<RentMe/>} />
               <Route path="/rent-tool/profession/:id" element={<RentByProfession/>} />
               <Route path="/rent-tool/brand/:id" element={<RentByBrand/>} />
-
             </Routes>
 
         </Router>

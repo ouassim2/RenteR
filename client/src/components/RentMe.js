@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import styled from "styled-components"
 import Bot from "./Bot"
 import LoadingSpinner from "./LoadingSpinner"
 
 const RentMe = () => {
-  // const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID
-  // const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
-  // const userId = process.env.REACT_APP_EMAILJS_USER_ID
+  const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID
+  const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+  const userId = process.env.REACT_APP_EMAILJS_USER_ID
 
   const { user, isAuthenticated } = useAuth0()
   const { id } = useParams()
+
   const [emailInfo, setEmailInfo] = useState(null)
   const [rentalChoice, setRentalChoice] = useState(null);
-  const [showChat, setShowChat] = useState(false);
-  
+  // const [showChat, setShowChat] = useState(false);
   // console.log("showChat", showChat)
 
   useEffect(() => {
@@ -51,9 +51,9 @@ const RentMe = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            service_id: "service_nqx5lzm",
-            template_id: "template_er855fq",
-            user_id: "nJ4gM4fTwdKh8e5p5",
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: userId,
             template_params: {
               targetUsername: emailInfo.userName,
               targetEmail: emailInfo.email,
@@ -71,7 +71,7 @@ const RentMe = () => {
          const statusCode = await sentEmail.status
             if(statusCode === 200){
               window.alert("Request Sent Successfully!")
-              setShowChat(true)
+              // setShowChat(true)
             }
     }
   }
@@ -153,7 +153,6 @@ const MiniWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    /* padding-top: 20px; */
     color: #303636;
 
 
@@ -177,39 +176,25 @@ const Div = styled.div`
       margin-top: 40px;
       margin-bottom: 50px;
       display: flex;
-      /* grid-template-columns: 250px ; */
       justify-content: center;
-      /* align-items: center; */
-      /* margin-left: 100px; */
     }
   }
 `
 const Wrapper = styled.div`
-  /* z-index: 1; */
-  /* height: 100vh; */
-  /* margin-top: 50px; */
-
-  /* background: #f0ead6; */
-
   display: grid;
   grid-template-columns: 500px 500px;
   justify-content: center;
   align-items: center;
-  div {
-    img {
-      height: 500px;
-      width: 500px;
-      /* height: fit-content;
-    width: fit-content;
-    transform: scale(0.5); */
 
+  div {
+
+    img {
+      height: 700px;
+      width: 500px;
+      object-fit: contain;
+      
       border-radius: 8px;
       margin-bottom: 20px;
-      /* margin-top: 50px; */
-      /* transform: scale(0.8); */
-      /* box-shadow: 0 0 8px 8px white inset; */
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     }
   }
 
@@ -250,10 +235,6 @@ const StyledButton = styled.button`
   height: 3rem;
   letter-spacing: 0.05em;
   width: 10rem;
-
-  /* &:disabled {
-    background-color: grey;
-  } */
 
   &:hover {
     cursor: pointer;

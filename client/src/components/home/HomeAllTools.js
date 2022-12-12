@@ -3,6 +3,7 @@ import  styled  from 'styled-components';
 import {  useContext  } from "react"
 import { ToolContext } from '../ToolContext';
 import { useAuth0 } from "@auth0/auth0-react"
+import LoadingSpinner from '../LoadingSpinner';
 
 const HomeAllTools = () => {
   const { isAuthenticated } = useAuth0()
@@ -12,6 +13,8 @@ const HomeAllTools = () => {
 
   return (
     <Wrapper>
+     {!homeToolList ? <Loading> <LoadingSpinner fontSize="120"/> </Loading>:
+<>
       <h1>Listings</h1>
       <ul>
         {homeToolList.map(
@@ -36,9 +39,18 @@ const HomeAllTools = () => {
           }
         )}
       </ul>
+      </>
+      }
     </Wrapper>
   )
 }
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+  height: 80vh;
+`;
 
 const Wrapper = styled.div`
 h1{

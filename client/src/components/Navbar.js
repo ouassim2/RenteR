@@ -12,9 +12,9 @@ const Navbar = () => {
           <LeftColumn>
             <LinkItem to="/"> <div><FaTools size="23px"/></div> <p><span>R</span>ent<span>R</span></p> </LinkItem>
             <LinkItem to="/"><li>Home</li></LinkItem>
-            {/* <LinkItem to="About"><li>About</li></LinkItem>
-            <LinkItem to="Services"><li>Services</li></LinkItem>
-            <LinkItem to="Contact"><li>Contact</li></LinkItem> */}
+             <LinkItem to="About"><li>About</li></LinkItem> 
+             <LinkItem to="Services"><li>Services</li></LinkItem>
+             <LinkItem to="Contact"><li>Contact</li></LinkItem> 
           </LeftColumn>
 
           <RightColumn>
