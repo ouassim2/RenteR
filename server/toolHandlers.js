@@ -134,7 +134,7 @@ const getToolsByBrand = async (req, res) => {
 
     const result = await db.collection("Tools3").find({brand : req.params.brand}).toArray()
     
-    res.status(200).json({status: 200, message: `here are all the tools for the profession :${req.params.profession}`, result })
+    res.status(200).json({status: 200, message: `here are all the tools for the brand :${req.params.brand}`, result })
 
 
   } catch (error) {
@@ -145,7 +145,7 @@ const getToolsByBrand = async (req, res) => {
   client.close()
 }
 
-const postTools = async (req, res) => {
+const postTool = async (req, res) => {
   const payLoad = req.body;
   console.log("  ~ payLoad", payLoad)
 
@@ -241,7 +241,7 @@ module.exports = {
   getUserToolListings,
   getToolsByProfession,
   getToolsByBrand,
-  postTools,
+  postTool,
   getUserProfile,
   editUserProfile,
 };

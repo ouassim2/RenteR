@@ -16,7 +16,7 @@ const Newtool = () => {
 
       const postNewTool = async () => {
         
-        const result = await fetch("/api/post-tools",{
+        const result = await fetch("/api/post-tool",{
           method: "POST",
           headers: {
             Accept: "application/json",
