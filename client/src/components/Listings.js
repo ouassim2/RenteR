@@ -14,7 +14,7 @@ const Listings = () => {
        
     if (isAuthenticated) {
 
-      const postData = async () => {
+      const getData = async () => {
 
         try {
           // getting all the tools from ouassim2 db
@@ -30,7 +30,7 @@ const Listings = () => {
         }
       }
 
-      postData()
+      getData()
 
     }
 
@@ -49,7 +49,8 @@ const Listings = () => {
           return(
 
        <Link to={`/tool/details/${_id}`} key={_id}>
-
+       {console.log("TCL: _id", _id)}
+            
           <ToolWrapper >
 
             <LeftColumn>

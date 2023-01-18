@@ -7,7 +7,7 @@ const Newtool = () => {
   const {user, isAuthenticated} = useAuth0()
   
   const [formData, setFormData] = useState({})
-  console.log("  ~ formData", formData)
+  // console.log("  ~ formData", formData)
   
   const handleSubmit = (e) => {
     e.preventDefault()
