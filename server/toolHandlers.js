@@ -173,6 +173,22 @@ const postTool = async (req, res) => {
   client.close()
 }
 
+const deleteTool = async (req, res) => {
+  const { id }  = req.params
+
+  try{
+    const db = await callDb()
+    const deletedTool = await db.collection("Tools3").deleteOne({_id : id})
+    res.status(200).json({status : 200, message : `deleted tool id ${id}`, deletedTool})
+
+    // console.log("deletedTool", deletedTool)
+
+  }catch(error){
+    console.log("error", error);
+  }
+
+}
+
 const getUserProfile = async (req, res) => {
    const {username} = req.params
 
@@ -242,6 +258,7 @@ module.exports = {
   getToolsByProfession,
   getToolsByBrand,
   postTool,
+  deleteTool,
   getUserProfile,
   editUserProfile,
 };

@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const morgan = require("morgan")
 
 //-----------------------/api/get-tools-------------------
-const { getTools, getToolById, getUserToolListings, getToolsByProfession, getToolsByBrand, postTool,getUserProfile, editUserProfile } = require("./toolHandlers")
+const { getTools, getToolById, getUserToolListings, getToolsByProfession, getToolsByBrand, postTool, deleteTool, getUserProfile, editUserProfile } = require("./toolHandlers")
 //------------------------------------------
 
 express()
@@ -30,7 +30,7 @@ express()
   .get("/api/get-tools/profession/:profession", getToolsByProfession) // get all the tools for that particular profession
   .get("/api/get-tools/brand/:brand", getToolsByBrand) // get all the tools for that particular profession
   .post("/api/post-tool", postTool) // post a single tool to Db
-  // .delete("/api/delete-tool", deleteTool) // delete a single tool from profil
+  .delete("/api/delete-tool:id", deleteTool) // delete a single tool from profil
 
   .get("/api/get-user-profile/:username", getUserProfile) // get the user profile (name, pic, bg)
   .patch("/api/edit-profile/:username", editUserProfile) // edit the user profile (name, pic, bg)

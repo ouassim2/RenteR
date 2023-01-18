@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import LoadingSpinner from "./LoadingSpinner"
+import DeleteTool from "./DeleteTool"
 
 const Listings = () => {
   const { user, isAuthenticated } = useAuth0()
@@ -49,26 +50,26 @@ const Listings = () => {
           return(
 
        <Link to={`/tool/details/${_id}`} key={_id}>
-       {console.log("TCL: _id", _id)}
+       
             
-          <ToolWrapper >
+          <ListingCard>
 
             <LeftColumn>
               <img src={user.picture} />
             </LeftColumn>
 
-            <RightColumn>
-              <ListingCard>
+              <RightColumn>
             
               <div><strong>Name: </strong>{toolName}</div>
                     <ToolImage src={toolImageSrc} />
                     <div><strong> 1 Hour </strong>: {priceOneHour}$</div>
                     <div><strong>1 Day: </strong>{priceOneDay}$ </div>
-             
-              </ListingCard>
-            </RightColumn>
+                    
+                    <DeleteTool _id={_id}/>
 
-          </ToolWrapper>
+              </RightColumn>
+
+          </ListingCard>
 
           </Link>
 
@@ -92,8 +93,8 @@ const Wrapper = styled.div`
 height: 100vh;
 `
 
-const ListingCard = styled.div`
-border-radius: 15px;
+const RightColumn = styled.div`
+  border-radius: 15px;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -117,7 +118,7 @@ const ToolImage = styled.img`
   margin-right: 25px;
 `
 
-const ToolWrapper = styled.div`
+const ListingCard = styled.div`
   /* margin-top: 30px; */
   display: flex;
   border-bottom: 1px solid black;
@@ -137,7 +138,5 @@ const LeftColumn = styled.div`
     /* margin-right: 15px; */
   }
 `
-const RightColumn = styled.div``
-
 
 export default Listings
