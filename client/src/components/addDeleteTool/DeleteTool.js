@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import styled from "styled-components"
+import { ToolContext } from '../ToolContext';
 
 const DeleteTool = ({ _id }) => {
+
+  const {setRefreshToolListOnDeletion} = useContext(ToolContext)
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -16,9 +20,13 @@ const DeleteTool = ({ _id }) => {
                 }
                 })
                 const parsedResponse = await removedTool.json()
+
+                if(parsedResponse.deletedTool.deletedCount > 0){ // if we find and delete at least one tool only then we refresh the tool list
+                    setRefreshToolListOnDeletion(true)
+                }
                 
             } catch (error) {
-                console.log("error", error)
+                window.alert("failed to delete tool ... Please try again! ", error);
             }
         }
 
@@ -43,6 +51,9 @@ const DeleteButton = styled.button`
   cursor: pointer;
   &:hover {
     background: #e62600;
+  }
+  &:active {
+    transform: scale(0.9);
   }
 `
 

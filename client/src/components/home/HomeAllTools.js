@@ -17,7 +17,7 @@ const HomeAllTools = () => {
 <>
       <h1>Listings</h1>
       <ul>
-        {homeToolList.map(
+        {homeToolList.reverse().map(
           ({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id }) => {
             return (
               <Link to={`/tool/details/${_id}`} key={_id}>

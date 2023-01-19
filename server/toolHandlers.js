@@ -147,12 +147,17 @@ const getToolsByBrand = async (req, res) => {
 
 const postTool = async (req, res) => {
   const payLoad = req.body;
-  console.log("  ~ payLoad", payLoad)
+  const {priceOneHour, priceOneDay} = req.body
 
+  let newPayload = {}
+
+    if(!priceOneHour.includes("$")){ // if user doesnt include $ in the price include it on the new object
+      newPayload = { ...payLoad, priceOneHour : `${priceOneHour}$`, priceOneDay : `${priceOneDay}$` };
+    }
 
   const objectToDb = {
-    ...payLoad,
     _id: uuidv4(),
+    ...newPayload,
   }
   
   // console.log("  ~ objectToDb", objectToDb)

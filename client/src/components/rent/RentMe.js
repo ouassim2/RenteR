@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import styled from "styled-components"
-import Bot from "./Bot"
-import LoadingSpinner from "./LoadingSpinner"
+import Bot from "../Bot"
+import LoadingSpinner from "../LoadingSpinner"
 
 const RentMe = () => {
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID

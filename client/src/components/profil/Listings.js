@@ -1,11 +1,15 @@
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import LoadingSpinner from "./LoadingSpinner"
-import DeleteTool from "./DeleteTool"
+import LoadingSpinner from "../LoadingSpinner"
+import DeleteTool from "../addDeleteTool/DeleteTool"
+import { ToolContext } from "../ToolContext"
 
 const Listings = () => {
+
+  const {refreshToolListOnDeletion, setRefreshToolListOnDeletion} = useContext(ToolContext)
+
   const { user, isAuthenticated } = useAuth0()
   const [listingInfo, setListingInfo] = useState(null);
   // console.log("  ~ listingInfo", listingInfo)
@@ -26,6 +30,8 @@ const Listings = () => {
 
           setListingInfo(parsedTools.userListings)
 
+          setRefreshToolListOnDeletion(false) // we set back refreshTooList to false so it can change to true when we delete another tool
+          
         } catch (error) {
           console.log("  ~ error", error)
         }
@@ -35,7 +41,7 @@ const Listings = () => {
 
     }
 
-  }, [isAuthenticated])
+  }, [isAuthenticated, refreshToolListOnDeletion])
 
 // 
 
@@ -62,8 +68,8 @@ const Listings = () => {
             
               <div><strong>Name: </strong>{toolName}</div>
                     <ToolImage src={toolImageSrc} />
-                    <div><strong> 1 Hour </strong>: {priceOneHour}$</div>
-                    <div><strong>1 Day: </strong>{priceOneDay}$ </div>
+                    <div><strong> 1 Hour </strong>: {priceOneHour}</div>
+                    <div><strong>1 Day: </strong>{priceOneDay}</div>
                     
                     <DeleteTool _id={_id}/>
 

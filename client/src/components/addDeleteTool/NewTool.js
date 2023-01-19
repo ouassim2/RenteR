@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled  from 'styled-components';
 import FileBase64 from "react-file-base64"
 import { useAuth0 } from "@auth0/auth0-react"
+import { ToolContext } from '../ToolContext';
 
-const Newtool = () => {
+const NewTool = () => {
+
+  const {setRefreshToolListOnAddition} = useContext(ToolContext)
+
   const {user, isAuthenticated} = useAuth0()
   
   const [formData, setFormData] = useState({})
@@ -28,6 +32,8 @@ const Newtool = () => {
           window.alert("Your files are too Powerful please choose a smaller size file!")
         } else if (result.status === 200){
           window.alert("Tool Added Successfully!")
+          // when a tool gets added successfuly
+          setRefreshToolListOnAddition(true)
         }
         
       }
@@ -196,4 +202,4 @@ const SubmitButton = styled.button`
     transform: scale(0.9);
   }
 `;
-export default Newtool;
+export default NewTool;

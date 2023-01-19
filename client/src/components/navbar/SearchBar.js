@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { ToolContext } from "./ToolContext";
-import LoadingSpinner from "./LoadingSpinner";
+import { ToolContext } from "../ToolContext";
+import LoadingSpinner from "../LoadingSpinner";
 
 // search through product inventory. state/props passed from app
 const SearchBar = () => {

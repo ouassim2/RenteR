@@ -3,8 +3,8 @@ import { CgProfile } from 'react-icons/cg';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import styled from "styled-components";
 import { useState } from "react";
-import LoginButton from "./auth0/LoginButton";
-import LogoutButton from "./auth0/LogoutButton";
+import LoginButton from "../auth0/LoginButton";
+import LogoutButton from "../auth0/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react"
 
 const Navprofile = () => {

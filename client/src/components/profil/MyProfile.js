@@ -2,9 +2,9 @@ import styled from "styled-components"
 import { NavLink } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import { CgProfile } from "react-icons/cg"
-import bg from "../assets/bgnone.png"
+import bg from "../../assets/bgnone.png"
 import { useEffect, useState } from "react"
-import LoadingSpinner from "./LoadingSpinner"
+import LoadingSpinner from "../LoadingSpinner"
 
 const MyProfile = () => {
   const { user, isAuthenticated } = useAuth0()
@@ -114,6 +114,9 @@ const ProfileWrapper = styled.div`
       &:hover {
       background: darkgoldenrod;
     }
+    &:active {
+    transform: scale(0.9);
+  }
   }
 `
 const Div1 = styled.div`
