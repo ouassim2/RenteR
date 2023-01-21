@@ -33,7 +33,7 @@ const ToolProvider = ({ children }) => {
 
     fetchAllTools()
 
-    //refreshToolListOnDeletion
+    
   }, [refreshToolListOnAddition, refreshToolListOnDeletion])
 
   // ToolDetails component states

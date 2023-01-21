@@ -10,7 +10,7 @@ import ToolDetails from "./ToolDetails";
 import RentMe from "./rent/RentMe";
 import RentByProfession from "./rent/RentByProfession";
 import RentByBrand from "./rent/RentByBrand";
-// import NavBar from "./Test.js"
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
 
@@ -18,8 +18,8 @@ const App = () => {
     <Wrapper>
         <Router>
           <GlobalStyles/>
+          <ToastContainer />  
           <Navbar/>
-          {/* <NavBar/> */}
 
             <Routes>
               <Route path="/" element={<Home />} />

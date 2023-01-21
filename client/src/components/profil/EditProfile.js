@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled  from 'styled-components';
 import FileBase64 from "react-file-base64"
 import { useAuth0 } from "@auth0/auth0-react"
+import { toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const EditProfile = () => {
     const {user, isAuthenticated} = useAuth0()
@@ -24,16 +26,14 @@ const EditProfile = () => {
             body:JSON.stringify({...formData })
           })
           if(result.status === 413){
-            window.alert("Your files are too Powerful please choose a smaller size file!")
+            toast.warn("Your files are too Powerful please choose a smaller size file!")
           } else if (result.status === 200){
-            window.alert("Your profile was edited successfully!")
+            toast.success("Your profile was edited successfully!")
           }
           
         }
         
         editUserInfo()
-        
-      }else{
         
       }
     }

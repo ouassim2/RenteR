@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components"
 import { ToolContext } from '../ToolContext';
+import { toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const DeleteTool = ({ _id }) => {
 
@@ -26,7 +28,7 @@ const DeleteTool = ({ _id }) => {
                 }
                 
             } catch (error) {
-                window.alert("failed to delete tool ... Please try again! ", error);
+              toast.warn("failed to delete tool ... Please try again! ", error);
             }
         }
 

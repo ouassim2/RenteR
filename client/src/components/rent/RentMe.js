@@ -4,6 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react"
 import styled from "styled-components"
 import Bot from "../Bot"
 import LoadingSpinner from "../LoadingSpinner"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 const RentMe = () => {
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID
@@ -70,7 +72,7 @@ const RentMe = () => {
       )
          const statusCode = await sentEmail.status
             if(statusCode === 200){
-              window.alert("Request Sent Successfully!")
+              toast.success("Request Sent Successfully!")
               // setShowChat(true)
             }
     }

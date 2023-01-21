@@ -3,6 +3,8 @@ import styled  from 'styled-components';
 import FileBase64 from "react-file-base64"
 import { useAuth0 } from "@auth0/auth0-react"
 import { ToolContext } from '../ToolContext';
+import { toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const NewTool = () => {
 
@@ -12,7 +14,7 @@ const NewTool = () => {
   
   const [formData, setFormData] = useState({})
   // console.log("  ~ formData", formData)
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -29,9 +31,10 @@ const NewTool = () => {
           body:JSON.stringify({...formData })
         })
         if(result.status === 413){
-          window.alert("Your files are too Powerful please choose a smaller size file!")
+          toast.warn("Your files are too Powerful please choose a smaller size file!")
         } else if (result.status === 200){
-          window.alert("Tool Added Successfully!")
+          toast.success("🔨 Tool Added Successfully!")
+
           // when a tool gets added successfuly
           setRefreshToolListOnAddition(true)
         }
@@ -45,7 +48,6 @@ const NewTool = () => {
   
     return ( 
     <>
-
     <BodyWrapper>
     <Wrapper>
           <h1>New Tool</h1>
