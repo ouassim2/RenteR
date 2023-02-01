@@ -38,12 +38,14 @@ const getTools = async (req, res) => {
   
       const result = await db.collection("Tools3").find().toArray();
       // console.log("  ~ result", result)
-  
+      const reversedArray = result.reverse()
+
       if (result.length === 0) {
         res.status(404).json({status : 404, message:`there are no Tools collection at the moment !`})
         return
       }
-      res.status(200).json({message:"here are all the tools !", result })
+
+      res.status(200).json({message:"here are all the tools !", reversedArray })
   
     } catch (err) {
       console.log(err.stack);

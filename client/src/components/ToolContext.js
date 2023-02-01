@@ -22,7 +22,7 @@ const ToolProvider = ({ children }) => {
         const parsedData = await data.json()
         // console.log("  ~ parsedData", parsedData.result)
 
-        setHomeToolList(parsedData.result)
+        setHomeToolList(parsedData.reversedArray)
 
         // put back the state to initial after a tool has been added in Newtool = false 
         setRefreshToolListOnAddition(false)
