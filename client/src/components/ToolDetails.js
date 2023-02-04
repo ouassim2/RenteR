@@ -16,25 +16,30 @@ const ToolDetails = () => {
   const { toolDetails, setToolDetails } = useContext(ToolContext);
   // console.log("  ~ toolDetails", toolDetails)
 
-useEffect(() => {
-  
-  const fetchToolDetails = async () => {
-    try {
-      
-      const data = await fetch(`/api/get-tool/${id}`)
-      const parsedData = await data.json()
-      // console.log("  ~ parsedData", parsedData.result)
-      
-      setToolDetails(parsedData.result)
-      
-    } catch (error) {
-      console.log("  ~ error", error)
+  useEffect(() => {
+    
+    const fetchToolDetails = async () => {
+      try {
+        
+        const data = await fetch(`/api/get-tool/${id}`)
+        const parsedData = await data.json()
+        // console.log("  ~ parsedData", parsedData.result)
+        
+        setToolDetails(parsedData.result)
+        
+      } catch (error) {
+        console.log("  ~ error", error)
+      }
     }
-  }
-  
-  fetchToolDetails()
+    
+    fetchToolDetails()
 
-}, [id, setToolDetails]);
+    // clean up as soon as we unmount we set the state to null so that when we click on a new tool we dont see the previous one
+    return () => {
+      setToolDetails(null)
+    }
+    
+  }, [id, setToolDetails]);
 
   return (
     <Div>
