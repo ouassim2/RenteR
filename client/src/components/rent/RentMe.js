@@ -41,11 +41,10 @@ const RentMe = () => {
     e.preventDefault()
     
     if (user && rentalChoice && emailInfo) {
-      console.log("user INSIDE", user)
-      console.log("rentalChoice", rentalChoice)
-      console.log("emailInfo", emailInfo)
-      const sentEmail = await fetch(
-        "https://api.emailjs.com/api/v1.0/email/send",
+      // console.log("user INSIDE", user)
+      // console.log("rentalChoice", rentalChoice)
+      // console.log("emailInfo", emailInfo)
+      const sentEmail = await fetch("https://api.emailjs.com/api/v1.0/email/send",
         {
           method: "POST",
           headers: {
@@ -113,18 +112,18 @@ const RentMe = () => {
             <h1>Select rental duration</h1>
 
             <form onSubmit={(e) => handleSubmit(e)}>
-            <MiniWrapper>
-              <div>
-                <label>  <span>Rent for:</span> 1 hour</label>
-                <input autoFocus required value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
-              </div>
-              <div>
-                <label> <span>Rent for:</span> 1 day</label>
-                <input required value={emailInfo.priceOneDay} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Day"})} name="radio-family" type="radio"></input>
-              </div>
-            </MiniWrapper>
+              <MiniWrapper>
+                <div>
+                  <label>  <span>Rent for:</span> 1 hour</label>
+                  <input autoFocus required value={emailInfo.priceOneHour} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Hour"})} name="radio-family" type="radio"></input>
+                </div>
+                <div>
+                  <label> <span>Rent for:</span> 1 day</label>
+                  <input required value={emailInfo.priceOneDay} onClick={e => setRentalChoice({rentalTotal : e.target.value, rentalDuration : "1 Day"})} name="radio-family" type="radio"></input>
+                </div>
+              </MiniWrapper>
 
-             <p>{isAuthenticated ? <StyledButton> Rent ! </StyledButton> : null} </p> 
+              <p>{isAuthenticated ? <StyledButton> Rent ! </StyledButton> : null} </p> 
             </form>
           </>
         }
