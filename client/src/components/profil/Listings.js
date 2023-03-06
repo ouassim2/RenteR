@@ -47,7 +47,7 @@ const Listings = () => {
 
   return (
     <Wrapper>
-      { user && listingInfo?.length === 0 ? <h1>You currently have no listings !</h1> : null }
+      { user && listingInfo?.length === 0 && <h1>You currently have no listings !</h1> }
       { user && listingInfo ? 
       <>
         {
