@@ -1,12 +1,11 @@
 "use strict";
 
 const { MongoClient } = require("mongodb");
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 
 require("dotenv").config({ path: __dirname + "/.env" });
 // const { MONGO_URI } = process.env;
 const { MONGO_URI_TORONTO } = process.env;
-
 
 const options = {
   useNewUrlParser: true,
@@ -158,7 +157,7 @@ const postTool = async (req, res) => {
     }
 
   const objectToDb = {
-    _id: uuidv4(),
+    _id: randomUUID(),
     ...newPayload,
   }
   
@@ -219,10 +218,9 @@ const editUserProfile = async(req, res) => {
   const {username} = req.params
   // console.log("username", username)
 
-  const {name, profilePicture, bgImage} = req.body
 
   const objToDB ={
-    _id: uuidv4(),
+    _id: randomUUID(),
     username,
     ...req.body,
   }
