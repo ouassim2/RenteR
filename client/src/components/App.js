@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home/Home"
 import GlobalStyles from "../GlobalStyles";
 import Navbar from "./navbar/Navbar";
-import UserProfile from "./profil/UserProfile"
-import EditProfile from './profil/EditProfile';
+import UserProfile from "./profile/UserProfile"
+import EditProfile from './profile/EditProfile';
 import NewTool from "./addDeleteTool/NewTool";
 import ToolDetails from "./ToolDetails";
 import RentMe from "./rent/RentMe";
