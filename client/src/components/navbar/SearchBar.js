@@ -75,7 +75,7 @@ const SearchBar = () => {
                 let upperCaseToolName = toolName.toUpperCase() // to case incentise 
 
                 return (
-                  // a clickable link to go to each watch by its id
+                  // a clickable link to go to each tool by its id
                   <LinkItem key={_id} to={`/tool/details/${_id}`} onClick={() => setValue("")} >
 
                     <MiniWrapper>
