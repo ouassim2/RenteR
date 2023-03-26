@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react"
 import ToolProvider from './components/ToolContext';
 
