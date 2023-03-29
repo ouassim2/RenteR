@@ -170,9 +170,9 @@ const Carousel = () => {
 
 
 const PrevButton = styled.button`
-margin-top: 100px;
-margin-left: 880px;
-cursor: pointer;
+    margin-top: 100px;
+    margin-left: 880px;
+    cursor: pointer;
     background: transparent;
     color: white;
     font-size: 5em;
@@ -198,9 +198,9 @@ cursor: pointer;
     }
 `
 const NextButton = styled.button`
-margin-top: 100px;
-margin-right: 880px;
-cursor: pointer;
+    margin-top: 100px;
+    margin-right: 880px;
+    cursor: pointer;
     background: transparent;
     color: white;
     font-size: 5em;
