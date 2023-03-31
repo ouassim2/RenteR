@@ -42,7 +42,7 @@ const MyProfile = () => {
 
         user && user.picture ? // if user has a picture in his git hub show it (user is a github state from useAuth0 hook)
         <div>
-          <img src={user.picture} alt="profile-picture" />
+          <img src={user.picture} alt="profile" />
         </div>
         :  // if not show a default no pic icon
         <NoPic> <CgProfile cursor="pointer" size="200" color="white" /></NoPic>
@@ -50,7 +50,7 @@ const MyProfile = () => {
 
       :   // else the user has  uploaded profile info (pic) show it
        <div>
-         <img src={profileInfo?.userInfo?.profilePicture} alt="profile-picture" />
+         <img src={profileInfo?.userInfo?.profilePicture} alt="profile" />
        </div>
        }
             {/*  the user has  uploaded profile info (bg) show it else show default bg*/}
