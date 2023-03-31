@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import styled  from 'styled-components';
-import FileBase64 from "react-file-base64"
+import ConvertToBase64 from '../ConvertToBase64';
+import { useState } from 'react';
+
 import { useAuth0 } from "@auth0/auth0-react"
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +10,9 @@ const EditProfile = () => {
     const {user, isAuthenticated} = useAuth0()
 
     const [formData, setFormData] = useState({})
-    
+    console.log("TCL: formData", formData)
+
+
     const handleSubmit = (e) => {
       e.preventDefault()
       
@@ -37,6 +40,10 @@ const EditProfile = () => {
         
       }
     }
+
+   
+
+
     return ( 
     
     <>
@@ -46,26 +53,28 @@ const EditProfile = () => {
             <h1>Edit Profile</h1>
             <form onSubmit={(e)=> handleSubmit(e)}>
 
-            <MiniWrapper>
-                <label>Name:</label>
-                <input autoComplete='off' onChange={(e)=> setFormData({...formData, name: e.target.value, }) } type="text" id="name"  />
-            </MiniWrapper>
+              <MiniWrapper>
+                  <label>Name:</label>
+                  <input autoComplete='off' onChange={(e)=> setFormData({...formData, name: e.target.value, }) } type="text" id="name"  />
+              </MiniWrapper>
 
-            <MiniWrapper>
+              <MiniWrapper>
                 <label>Profile picture:</label>
-                <FileBase64 multiple={ false } onDone={( { base64 } ) => setFormData({...formData, profilePicture: base64 })}/>
-            </MiniWrapper>
+                <ConvertToBase64  alt="background" onDone={ base64 => setFormData({...formData, profilePicture: base64 })}/>
+                  
+              </MiniWrapper>
 
-            <MiniWrapper>
+              <MiniWrapper>
                 <label>Background image:</label>
-                <FileBase64 multiple={ false } onDone={( { base64 } ) => setFormData({...formData, bgImage: base64 })}/>
-            </MiniWrapper>
-            <footer>
-              <ClearButton type="reset">Clear</ClearButton>
-              <SubmitButton type="submit">Submit</SubmitButton>
-            </footer>
+                <ConvertToBase64  alt="background" onDone={ base64 => setFormData({...formData, bgImage: base64 })}/>
+              </MiniWrapper>
+
+              <footer>
+                <ClearButton type="reset">Clear</ClearButton>
+                <SubmitButton type="submit">Submit</SubmitButton>
+              </footer>
             </form>
-            </Wrapper>
+          </Wrapper>
         </BodyWrapper>
     </> );
 }
