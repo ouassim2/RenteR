@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home/Home"
 import GlobalStyles from "../GlobalStyles";
 import Navbar from "./navbar/Navbar";
-import UserProfile from "./profile/UserProfile"
+import User from "./profile/User"
 import EditProfile from './profile/EditProfile';
 import NewTool from "./addDeleteTool/NewTool";
 import ToolDetails from "./ToolDetails";
@@ -24,7 +24,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/tool/details/:id" element={<ToolDetails />} />
-              <Route path="/profile/:username" element={<UserProfile/>} />
+              <Route path="/profile/:username" element={<User/>} />
               <Route path="/new-tool" element={<NewTool/>} />
               <Route path="/edit-profile" element={<EditProfile/>} />
               <Route path="/rent-tool/:id" element={<RentMe/>} />
