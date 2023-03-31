@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
 import styled  from 'styled-components';
-import FileBase64 from "react-file-base64"
+import ConvertToBase64 from '../ConvertToBase64';
+import { useContext, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react"
 import { ToolContext } from '../ToolContext';
 import { toast } from 'react-toastify'
@@ -96,7 +96,7 @@ const NewTool = () => {
 
             <MiniWrapper>
               <label>Tool image:</label>
-              <FileBase64 multiple={ false } onDone={( { base64 } ) => setFormData({...formData, toolImageSrc: base64 })}/>
+              <ConvertToBase64 onDone={ base64 => setFormData({...formData, toolImageSrc: base64 })}/>
             </MiniWrapper>
            
             <footer>

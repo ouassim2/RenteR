@@ -1,5 +1,5 @@
 
-const ConvertToBase64 = ({alt, onDone}) => {
+const ConvertToBase64 = ({ alt, onDone }) => {
 
  const handleChange = (e) => {
       e.preventDefault()
