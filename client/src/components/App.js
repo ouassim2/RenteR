@@ -18,7 +18,7 @@ const App = () => {
     <Wrapper>
         <Router>
           <GlobalStyles/>
-          <ToastContainer />  
+          <ToastContainer position="top-center"/>  
           <Navbar/>
 
             <Routes>
