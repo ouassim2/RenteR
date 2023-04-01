@@ -3,20 +3,22 @@ import { NavLink } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import { CgProfile } from "react-icons/cg"
 import bg from "../../assets/bgnone.png"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import LoadingSpinner from "../LoadingSpinner"
+import { useContext } from "react"
+import { ToolContext } from "../ToolContext"
 
 const MyProfile = () => {
   const { user, isAuthenticated } = useAuth0()
-  const [profileInfo, setProfileInfo] = useState(null)
+  
+  const { profileInfo, setProfileInfo} = useContext(ToolContext)
 
-    // console.log("profileInfo", profileInfo)
      
-    useEffect(() => {
-        if (isAuthenticated) {
-            
-            const fetchProfileInfo = async () => {
-            try {
+  useEffect(() => {
+    if (isAuthenticated) {
+          
+      const fetchProfileInfo = async () => {
+        try {
 
           const fetchInfo = await fetch(`/api/get-user-profile/${user.nickname}`)
           const parsedInfo = await fetchInfo.json()
@@ -38,9 +40,9 @@ const MyProfile = () => {
     <ProfileWrapper>
         {!profileInfo || !user ? <Loading> <LoadingSpinner fontSize="120"/> </Loading> : 
         <>
-        {profileInfo?.status === 200 && profileInfo?.userInfo?.profilePicture === undefined ? // if the user has not uploaded a picture go check auth0 github info instead
+        {profileInfo?.status === 200 && profileInfo?.userInfo?.profilePicture === undefined ? // if the user has not uploaded a picture go check auth0 his connected account info instead
 
-        user && user.picture ? // if user has a picture in his git hub show it (user is a github state from useAuth0 hook)
+        user && user.picture ? // if user has a picture on his connected account show it (user is a state from useAuth0 hook)
         <div>
           <img src={user.picture} alt="profile" />
         </div>
@@ -48,22 +50,23 @@ const MyProfile = () => {
         <NoPic> <CgProfile cursor="pointer" size="200" color="white" /></NoPic>
       
 
-      :   // else the user has  uploaded profile info (pic) show it
+      :   // else the user has uploaded profile info (pic) show it
        <div>
          <img src={profileInfo?.userInfo?.profilePicture} alt="profile" />
        </div>
        }
-            {/*  the user has  uploaded profile info (bg) show it else show default bg*/}
+
+      {/*  the user has  uploaded profile info (bg) show it else show default bg*/}
       <BgImage src={profileInfo?.userInfo?.bgImage ? profileInfo?.userInfo?.bgImage : bg} alt="profile-picture-bg" />
 
-      <Div1>
-      { profileInfo?.status === 200 && profileInfo?.userInfo?.name === undefined ? // if the user has not uploaded any profil info (pic, name, bg) go check auth0 github info instead
-        user?.nickname ? user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1) //if user has a picture in has a nickname in github show it (user is a github state from useAuth0 hook)
+      <UserName>
+      { profileInfo?.status === 200 && profileInfo?.userInfo?.name === undefined ? // if the user has not uploaded any profil info (pic, name, bg) go check auth0 info instead
+        user?.nickname ? user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1) //if user has a nickname show it (user is a state from useAuth0 hook)
           : "User" // user has no nickname in github show string " user"
 
         //   else the user has  uploaded profile info (name) show it (the rest is just to uppercase the first letter)
           : profileInfo?.userInfo?.name.charAt(0).toUpperCase() + profileInfo?.userInfo?.name.slice(1)} 
-      </Div1>
+      </UserName>
 
       <NavLink to="/new-tool">
         <button>New Tool</button>
@@ -119,7 +122,7 @@ const ProfileWrapper = styled.div`
   }
   }
 `
-const Div1 = styled.div`
+const UserName = styled.div`
   top: 500px;
   position: absolute;
   margin-left: 220px;

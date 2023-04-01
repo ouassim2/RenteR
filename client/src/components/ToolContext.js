@@ -6,7 +6,15 @@ const ToolProvider = ({ children }) => {
   // Home component states
   const [homeToolList, setHomeToolList] = useState(null)
   
-  
+  // ToolDetails big picture and more tool details
+  const [toolDetails, setToolDetails] = useState(null)
+
+  // when the user change his name, profil pic or background pic
+  const [profileInfo, setProfileInfo] = useState(null)
+
+  // when you press enter or click on the search bar this is the result displayed
+  const [filteredItems, setFilteredItems] = useState([]);  
+
 
   // refresh tool listing on Addition of a tool in newtool
   const [refreshToolListOnAddition, setRefreshToolListOnAddition] = useState(false)
@@ -14,11 +22,7 @@ const ToolProvider = ({ children }) => {
   // refresh tool listing on deletion of a tool in DeleteTool
   const [refreshToolListOnDeletion, setRefreshToolListOnDeletion] = useState(false)
 
-  // ToolDetails component states
-  const [toolDetails, setToolDetails] = useState(null)
 
-  // when you press enter or click on the search bar this is the result displayed
-  const [filteredItems, setFilteredItems] = useState([]);  
 
 
   useEffect(() => {
@@ -44,9 +48,9 @@ const ToolProvider = ({ children }) => {
   }, [refreshToolListOnAddition, refreshToolListOnDeletion])
 
 
-  
+
   return (
-    <ToolContext.Provider value={{ homeToolList, setHomeToolList, toolDetails, setToolDetails, refreshToolListOnDeletion, setRefreshToolListOnDeletion, refreshToolListOnAddition, setRefreshToolListOnAddition, filteredItems, setFilteredItems  }}>
+    <ToolContext.Provider value={{ homeToolList, setHomeToolList, toolDetails, setToolDetails, refreshToolListOnDeletion, setRefreshToolListOnDeletion, refreshToolListOnAddition, setRefreshToolListOnAddition, filteredItems, setFilteredItems, profileInfo, setProfileInfo  }}>
       {children}
     </ToolContext.Provider>
   )
