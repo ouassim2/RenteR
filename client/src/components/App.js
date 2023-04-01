@@ -10,6 +10,7 @@ import ToolDetails from "./ToolDetails";
 import RentMe from "./rent/RentMe";
 import RentByProfession from "./rent/RentByProfession";
 import RentByBrand from "./rent/RentByBrand";
+import SearchedTools from "./navbar/SearchedTools"
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="/rent-tool/:id" element={<RentMe/>} />
               <Route path="/rent-tool/profession/:id" element={<RentByProfession/>} />
               <Route path="/rent-tool/brand/:id" element={<RentByBrand/>} />
+              <Route path="/tool/search" element={<SearchedTools/>} />
             </Routes>
 
         </Router>

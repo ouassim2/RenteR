@@ -1,29 +1,56 @@
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToolContext } from "../ToolContext";
 import LoadingSpinner from "../LoadingSpinner";
 
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
+
 // search through product inventory. state/props passed from app
 const SearchBar = () => {
+  
   const [value, setValue] = useState(""); // to store the search querry
 
-  const { homeToolList } = useContext(ToolContext)
+  const navigate = useNavigate()
+
+  const { homeToolList, setFilteredItems } = useContext(ToolContext)
   // console.log("  ~ homeToolList", homeToolList)
+  
+  let ResultArray = []
+  let slicedResultArray = []
 
+  const handleSelect = (e) => {
+    if (e.key === "Enter" ) {
+      e.preventDefault()
 
-  const handleSelect = () => {
-    window.alert("should bring to a new matching search query page!"); // if a user type fitbit hit enter should go to a new page with all the fitbit
+      if (ResultArray.length >= 1){
+        setFilteredItems(ResultArray)
+        navigate(`/tool/search`)
+        setValue("")
+      }else{
+        toast.warn("No result found !")
+        
+      }
+    }
+  }
+
+  const handleClick = () => {
+    if (ResultArray.length >= 1){
+      setFilteredItems(ResultArray)
+      navigate(`/tool/search`)
+      setValue("")
+    }else{
+      toast.warn("No result found !")
+    }
   };
 
   const handlesubmit = (e) => { // prevent the default behavior of the page reload for the form onSubmit event handler
     e.preventDefault()
   };
 
-  let ResultArray = []
-  let slicedResultArray = []
 
-  if (homeToolList && value.length >= 1) { // we make sure the filtering starts only after 2 inputs have registered and we wait for our prop to load(the fetch)
+  if (homeToolList && value.length >= 1) { // we make sure the filtering starts only after x inputs have registered and we wait for our prop to load(the fetch)
 
     homeToolList.forEach(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id }) => {
       let upperCaseUserInput = value.toUpperCase() // to case incentise 
@@ -53,20 +80,14 @@ const SearchBar = () => {
           <>
             <Input
               value={value}
-              onChange={(event) => {
-                setValue(event.target.value);
+              onChange={(e) => {
+                setValue(e.target.value);
               }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  handleSelect(event.target.value);
-                }
-              }}
+              onKeyDown={handleSelect}
               placeholder="Search"
             ></Input>
 
-            <Ok onClick={(event) => handleSelect(event.target.value)}>
-              Search
-            </Ok>
+            <Ok onClick={handleClick} > Search </Ok>
 
             <StyledUl>
               {slicedResultArray.map(({ toolName, toolImageSrc, priceOneHour, priceOneDay, _id }) => {
