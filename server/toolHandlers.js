@@ -232,13 +232,13 @@ const editUserProfile = async(req, res) => {
     const result = await db.collection("UsersProfiles").findOne({username})
     // console.log("result", result)
     
-    if (!result){
+    if (!result){ // if user doesnt exist create him
       // console.log("user no exist!")
     const newUser = await db.collection("UsersProfiles").insertOne(objToDB)
     // console.log("added user ", newUser)
     res.status(200).json({status : 200, userInfo : req.body})
     
-  }else{
+  }else{ // if user exist update him
     // console.log("user exist already!")
     const updatedUser = await db.collection("UsersProfiles").updateOne({username}, { $set: {...req.body} })
     // console.log("updatedUser", updatedUser)
