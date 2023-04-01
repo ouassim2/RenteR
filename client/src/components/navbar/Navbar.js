@@ -8,20 +8,18 @@ const Navbar = () => {
   return (
     <Wrapper>
       <nav>
-        <ul>
           <LeftColumn>
             <LinkItem to="/"> <div><FaTools size="23px"/></div> <p><span>R</span>ent<span>R</span></p> </LinkItem>
             <LinkItem to="/"><li>Home</li></LinkItem>
-             <LinkItem to="About"><li>About</li></LinkItem> 
-             <LinkItem to="Services"><li>Services</li></LinkItem>
-             <LinkItem to="Contact"><li>Contact</li></LinkItem> 
+            <LinkItem to="About"><li>About</li></LinkItem> 
+            <LinkItem to="Services"><li>Services</li></LinkItem>
+            <LinkItem to="Contact"><li>Contact</li></LinkItem> 
           </LeftColumn>
 
           <RightColumn>
             <SearchBar />
-                <Navprofile />
+            <Navprofile />
           </RightColumn>
-        </ul>
       </nav>
     </Wrapper>
   )
@@ -29,21 +27,17 @@ const Navbar = () => {
 
 const Wrapper = styled.div`
   background-color: black;
-  height: 50px;
-  z-index: 10;
+  position: sticky;
+  top: 0px;
+  z-index: 15;
 
-  
-  
   nav {
-    ul {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   `
 const LinkItem = styled(NavLink)`
-  text-decoration: none;
   color: white;
   padding-right: 20px;
   padding-left: 15px;
@@ -61,14 +55,17 @@ const LinkItem = styled(NavLink)`
 
   p{
     font-size: 1em; 
-    span{   
+
+    span {   
       color: goldenrod;
+
       :hover {
-      color: darkgoldenrod;
-      transition: 0.3s ease-in-out;
+        color: darkgoldenrod;
+        transition: 0.3s ease-in-out;
       }
     }
   }
+  
   div{
     margin-top: 2px;
     margin-left: 10px;

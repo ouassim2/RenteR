@@ -49,7 +49,7 @@ export default createGlobalStyle`
     display: block;
   }
 
-  ol, ul {
+  ol, ul, nav {
     list-style: none;
   }
   blockquote, q {
