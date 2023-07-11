@@ -12,6 +12,7 @@ const ToolDetails = () => {
   const { isAuthenticated } = useAuth0()
 
   const { id } = useParams();
+  // console.log("~~~TCL: id", id)
   
   const { toolDetails, setToolDetails } = useContext(ToolContext);
   // console.log("  ~ toolDetails", toolDetails)

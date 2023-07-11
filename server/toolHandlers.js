@@ -49,7 +49,7 @@ const getTools = async (req, res) => {
     } catch (err) {
       console.log(err.stack);
     } 
-      client.close();
+      // client.close();
 }
 
 const getToolById = async (req, res) => {
@@ -124,7 +124,7 @@ const getToolsByProfession = async(req, res) => {
     
   }
 
-  client.close()
+  // client.close()
 }
 
 const getToolsByBrand = async (req, res) => {
@@ -143,7 +143,7 @@ const getToolsByBrand = async (req, res) => {
     
   }
 
-  client.close()
+  // client.close()
 }
 
 const postTool = async (req, res) => {
@@ -176,7 +176,7 @@ const postTool = async (req, res) => {
   console.log("  ~ err", err)
   }
 
-  client.close()
+  // client.close()
 }
 
 const deleteTool = async (req, res) => {
@@ -249,7 +249,7 @@ const editUserProfile = async(req, res) => {
     console.log("error", error)
     
   }
-  client.close()
+  // client.close()
 
 }
 
